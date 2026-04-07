@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bébé Energy™ — Social Media Template Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Bebas+Neue&family=DM+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #060606;
+  --surface: #0e0e0e;
+  --surface2: #141414;
+  --gold: #c8933a;
+  --gold-light: #e6b85c;
+  --gold-pale: #f5dfa0;
+  --gold-dim: #5c4018;
+  --cream: #efe6d4;
+  --cream-mid: #a09080;
+  --cream-dim: #5a5045;
+  --muted: #222;
+  --muted2: #333;
+}
+
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'Cormorant Garamond', serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* grain */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── HEADER ── */
+header {
+  padding: 28px 40px;
+  border-bottom: 0.5px solid var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: rgba(6,6,6,0.9);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 57px;
+  z-index: 50;
+}
+
+.header-brand {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 22px;
+  letter-spacing: 3px;
+  color: var(--gold);
+}
+.header-brand span {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 11px;
+  opacity: 0.5;
+  margin-left: 2px;
+}
+
+.header-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cream-mid);
+}
+
+/* ── MAIN LAYOUT ── */
+.studio {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  flex: 1;
+  min-height: 0;
+}
+
+@media (max-width: 900px) {
+  .studio { grid-template-columns: 1fr; }
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  background: var(--surface);
+  border-right: 0.5px solid var(--muted);
+  padding: 32px 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.sidebar-section-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.55;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sidebar-section-title::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: var(--muted2);
+}
+
+/* Quote input */
+.quote-input-wrap { position: relative; }
+
+#quote-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 0.5px solid var(--muted2);
+  border-bottom: 1.5px solid var(--gold-dim);
+  color: var(--cream);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.65;
+  padding: 16px;
+  resize: none;
+  height: 120px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#quote-input:focus { border-bottom-color: var(--gold); }
+#quote-input::placeholder { color: var(--cream-dim); font-style: italic; }
+
+.awesome-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.awesome-tag-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--gold);
+}
+
+.awesome-tag-note {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--cream-dim);
+  text-transform: uppercase;
+}
+
+/* Platform tabs */
+.platform-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.platform-tab {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  background: var(--surface2);
+  border: 0.5px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 2px solid transparent;
+}
+
+.platform-tab:hover {
+  border-left-color: var(--gold-dim);
+  background: #1a1a1a;
+}
+
+.platform-tab.active {
+  border-left-color: var(--gold);
+  background: linear-gradient(90deg, #1a1000, var(--surface2));
+}
+
+.platform-tab-icon { font-size: 18px; }
+
+.platform-tab-info { flex: 1; }
+
+.platform-tab-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cream);
+  display: block;
+}
+
+.platform-tab.active .platform-tab-name { color: var(--gold-light); }
+
+.platform-tab-size {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: var(--cream-dim);
+  margin-top: 2px;
+  display: block;
+}
+
+/* Style options */
+.style-opts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.style-opt {
+  padding: 10px 12px;
+  background: var(--surface2);
+  border: 0.5px solid var(--muted2);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cream-mid);
+}
+
+.style-opt:hover { border-color: var(--gold-dim); }
+.style-opt.active { border-color: var(--gold); color: var(--gold); background: #1a1000; }
+
+/* Random quote button */
+.btn-random {
+  width: 100%;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--gold);
+  border: 0.5px solid var(--gold-dim);
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-random:hover { background: #1a1000; border-color: var(--gold); }
+
+/* ── CANVAS AREA ── */
+.canvas-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px 32px;
+  overflow-y: auto;
+  gap: 32px;
+  background: #080808;
+}
+
+.canvas-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 680px;
+}
+
+.canvas-meta-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.5;
+}
+
+.btn-download {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--bg);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-download:hover { background: var(--gold-light); }
+
+/* ── THE TEMPLATE CANVAS ── */
+.template-canvas-wrap {
+  width: 100%;
+  max-width: 680px;
+  position: relative;
+}
+
+/* Each platform canvas */
+.tpl-canvas {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #080808;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Aspect ratios */
+.tpl-canvas.square    { aspect-ratio: 1 / 1; }
+.tpl-canvas.portrait  { aspect-ratio: 9 / 16; max-height: 680px; }
+.tpl-canvas.landscape { aspect-ratio: 16 / 9; }
+.tpl-canvas.story     { aspect-ratio: 9 / 16; max-height: 680px; }
+
+/* ══════════════════════════════════════
+   TEMPLATE STYLES — one per platform
+   ══════════════════════════════════════ */
+
+/* ── INSTAGRAM SQUARE ── */
+.tpl-instagram {
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, #1e1200 0%, #070707 70%);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10%;
+}
+
+.tpl-instagram .corner-tl,
+.tpl-instagram .corner-tr,
+.tpl-instagram .corner-bl,
+.tpl-instagram .corner-br {
+  position: absolute;
+  width: 5%;
+  height: 5%;
+}
+
+.tpl-instagram .corner-tl { top: 5%; left: 5%; border-top: 1px solid var(--gold-dim); border-left: 1px solid var(--gold-dim); }
+.tpl-instagram .corner-tr { top: 5%; right: 5%; border-top: 1px solid var(--gold-dim); border-right: 1px solid var(--gold-dim); }
+.tpl-instagram .corner-bl { bottom: 5%; left: 5%; border-bottom: 1px solid var(--gold-dim); border-left: 1px solid var(--gold-dim); }
+.tpl-instagram .corner-br { bottom: 5%; right: 5%; border-bottom: 1px solid var(--gold-dim); border-right: 1px solid var(--gold-dim); }
+
+.tpl-instagram .quote-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 5em;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.tpl-instagram .brand-top {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55em;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  opacity: 0.5;
+  text-transform: uppercase;
+  margin-bottom: 6%;
+}
+
+.tpl-instagram .rule {
+  width: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 6%;
+}
+
+.tpl-instagram .quote-body {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3em;
+  line-height: 1.5;
+  color: var(--cream);
+  margin-bottom: 5%;
+}
+
+.tpl-instagram .quote-awesome {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 1.45em;
+  color: var(--gold);
+}
+
+.tpl-instagram .brand-bottom {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.55em;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  opacity: 0.4;
+  white-space: nowrap;
+}
+
+/* ── TIKTOK / STORY (9:16) ── */
+.tpl-tiktok {
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 60%, #1a1000 0%, #050505 65%),
+    #050505;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 8% 8% 8%;
+}
+
+.tpl-tiktok .brand-pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.5em;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 0.5px solid var(--gold-dim);
+  padding: 0.4em 0.8em;
+  margin-bottom: 8%;
+  display: inline-block;
+}
+
+.tpl-tiktok .big-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 7em;
+  color: rgba(200,147,58,0.07);
+  line-height: 0.85;
+  margin-bottom: -0.15em;
+}
+
+.tpl-tiktok .quote-body {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5em;
+  line-height: 1.45;
+  color: var(--cream);
+  margin-bottom: 6%;
+  padding-right: 5%;
+}
+
+.tpl-tiktok .quote-awesome {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 1.65em;
+  color: var(--gold);
+  margin-bottom: 10%;
+}
+
+.tpl-tiktok .gold-line {
+  width: 30%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-dim), transparent);
+  margin-bottom: 6%;
+}
+
+.tpl-tiktok .brand-bottom {
+  position: absolute;
+  bottom: 6%;
+  left: 8%;
+  right: 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tpl-tiktok .brand-name {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1em;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  opacity: 0.5;
+}
+
+.tpl-tiktok .brand-handle {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.45em;
+  letter-spacing: 0.2em;
+  color: var(--cream-dim);
+}
+
+/* ── PINTEREST (2:3) ── */
+.tpl-pinterest {
+  aspect-ratio: 2 / 3 !important;
+  background: #080808;
+  padding: 0;
+  overflow: hidden;
+}
+
+.tpl-pinterest .pin-top {
+  flex: 1;
+  background: radial-gradient(ellipse 90% 70% at 50% 50%, #221500 0%, #0a0800 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8% 8% 6%;
+  flex-direction: column;
+  position: relative;
+  min-height: 60%;
+}
+
+.tpl-pinterest .pin-big-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 2.8em;
+  color: var(--gold);
+  line-height: 1.1;
+  margin-bottom: 6%;
+}
+
+.tpl-pinterest .pin-body {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05em;
+  line-height: 1.6;
+  color: var(--cream);
+  opacity: 0.85;
+}
+
+.tpl-pinterest .pin-bottom {
+  background: #050505;
+  border-top: 1px solid var(--gold-dim);
+  padding: 5% 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.tpl-pinterest .pin-brand {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.1em;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.tpl-pinterest .pin-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.45em;
+  letter-spacing: 0.2em;
+  color: var(--cream-dim);
+  text-align: right;
+  line-height: 1.6;
+}
+
+/* ── TWITTER/X (16:9 ish) ── */
+.tpl-twitter {
+  aspect-ratio: 1200 / 675 !important;
+  background: #060606;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.tpl-twitter .twitter-left {
+  width: 8px;
+  background: var(--gold);
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+.tpl-twitter .twitter-content {
+  flex: 1;
+  padding: 8% 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tpl-twitter .twitter-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6em;
+  line-height: 1.45;
+  color: var(--cream);
+  margin-bottom: 5%;
+}
+
+.tpl-twitter .twitter-awesome {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 1.8em;
+  color: var(--gold);
+  margin-bottom: 6%;
+}
+
+.tpl-twitter .twitter-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tpl-twitter .twitter-logo-mark {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1em;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  opacity: 0.5;
+}
+
+.tpl-twitter .twitter-handle {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.5em;
+  letter-spacing: 0.15em;
+  color: var(--cream-dim);
+}
+
+.tpl-twitter .twitter-big-bg {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 10em;
+  color: rgba(200,147,58,0.04);
+  position: absolute;
+  right: -2%;
+  bottom: -10%;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── YOUTUBE THUMBNAIL (16:9) ── */
+.tpl-youtube {
+  aspect-ratio: 16 / 9 !important;
+  background: #040404;
+  position: relative;
+  overflow: hidden;
+}
+
+.tpl-youtube .yt-left-panel {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 55%;
+  background: linear-gradient(135deg, #1a1100 0%, #090700 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7% 8%;
+}
+
+.tpl-youtube .yt-right-panel {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 48%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tpl-youtube .yt-divider {
+  position: absolute;
+  left: 53%;
+  top: 10%;
+  bottom: 10%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--gold-dim), transparent);
+}
+
+.tpl-youtube .yt-episode {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.45em;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.55;
+  margin-bottom: 4%;
+}
+
+.tpl-youtube .yt-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1em;
+  line-height: 1.45;
+  color: var(--cream);
+  margin-bottom: 4%;
+}
+
+.tpl-youtube .yt-awesome {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 1.25em;
+  color: var(--gold);
+  margin-bottom: 6%;
+}
+
+.tpl-youtube .yt-brand {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 0.75em;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  opacity: 0.4;
+}
+
+.tpl-youtube .yt-big-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 9em;
+  color: rgba(200,147,58,0.08);
+  line-height: 1;
+}
+
+/* ── NEWSLETTER HEADER ── */
+.tpl-newsletter {
+  aspect-ratio: 600 / 200 !important;
+  background: linear-gradient(135deg, #0e0900 0%, #060600 50%, #0e0900 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  gap: 5%;
+  position: relative;
+  overflow: hidden;
+}
+
+.tpl-newsletter::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.tpl-newsletter::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+
+.tpl-newsletter .nl-brand {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2.5em;
+  letter-spacing: 0.15em;
+  background: linear-gradient(135deg, var(--cream), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.tpl-newsletter .nl-divider {
+  width: 1px;
+  height: 60%;
+  background: var(--gold-dim);
+  flex-shrink: 0;
+}
+
+.tpl-newsletter .nl-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.9em;
+  line-height: 1.5;
+  color: var(--cream);
+  opacity: 0.7;
+  flex: 1;
+}
+
+.tpl-newsletter .nl-awesome {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 1em;
+  display: inline;
+}
+
+/* ── SHARED COPY CAPTION ── */
+.caption-box {
+  width: 100%;
+  max-width: 680px;
+  background: var(--surface);
+  border-left: 2px solid var(--gold-dim);
+  padding: 24px 28px;
+}
+
+.caption-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.5;
+  margin-bottom: 14px;
+}
+
+.caption-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--cream);
+  opacity: 0.7;
+  white-space: pre-wrap;
+}
+
+.caption-text .caption-awesome { color: var(--gold); font-style: italic; font-weight: 600; }
+
+.btn-copy-caption {
+  margin-top: 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--gold);
+  border: 0.5px solid var(--gold-dim);
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-copy-caption:hover { background: #1a1000; border-color: var(--gold); }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); }
+</style>
+<style>
+/* ═══════════════════════════════
+   BÉBÉ ENERGY — SHARED SITE NAV
+   ═══════════════════════════════ */
+.be-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  background: rgba(5,5,5,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 0.5px solid #1e1e1e;
+  gap: 24px;
+}
+
+.be-nav-logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: #c8933a;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+.be-nav-logo:hover { opacity: 0.75; }
+
+.be-nav-tm {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 10px;
+  color: #c8933a;
+  opacity: 0.5;
+  margin-left: 1px;
+}
+
+.be-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.be-nav-links a {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #a09080;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.be-nav-links a:hover { color: #c8933a; }
+
+.be-nav-links a.be-nav-cta {
+  background: #c8933a;
+  color: #060606;
+  padding: 8px 16px;
+  letter-spacing: 2px;
+  transition: background 0.2s;
+}
+.be-nav-links a.be-nav-cta:hover { background: #e6b85c; color: #060606; }
+
+/* Burger */
+.be-nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.be-nav-burger span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: #c8933a;
+  transition: all 0.3s;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .be-nav { padding: 16px 24px; }
+  .be-nav-burger { display: flex; }
+  .be-nav-links {
+    position: fixed;
+    top: 57px; left: 0; right: 0;
+    background: rgba(5,5,5,0.97);
+    flex-direction: column;
+    padding: 24px;
+    gap: 0;
+    border-bottom: 0.5px solid #1e1e1e;
+    transform: translateY(-110%);
+    transition: transform 0.3s ease;
+    align-items: flex-start;
+  }
+  .be-nav-links.open { transform: translateY(0); }
+  .be-nav-links li { width: 100%; }
+  .be-nav-links a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 0.5px solid #1a1a1a;
+    font-size: 10px;
+  }
+  .be-nav-links a.be-nav-cta {
+    margin-top: 12px;
+    text-align: center;
+    padding: 12px;
+    width: 100%;
+  }
+}
+/* ═══════════════════════════════ */
+</style>
+</head>
+<body>
+<!-- BÉBÉ ENERGY SITE NAV -->
+<nav class="be-nav">
+  <a href="index.html" class="be-nav-logo">Bébé Energy<span class="be-nav-tm">™</span></a>
+  <button class="be-nav-burger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="be-nav-links" id="be-nav-links">
+    <li><a href="collection.html">Collection</a></li>
+    <li><a href="index.html">Shop</a></li>
+    <li><a href="wallpaper.html">Wallpaper</a></li>
+    <li><a href="templates.html">Templates</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#products" class="be-nav-cta">Buy PDFs →</a></li>
+  </ul>
+</nav>
+<!-- END SITE NAV -->
+
+
+<header>
+  <div class="header-brand">Bébé Energy<span>™</span></div>
+  <div class="header-title">Template Studio · All Platforms</div>
+</header>
+
+<div class="studio">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+
+    <!-- Quote input -->
+    <div>
+      <div class="sidebar-section-title">Your Quote</div>
+      <div class="quote-input-wrap">
+        <textarea id="quote-input" placeholder="Type your quote here…" oninput="updateAll()">My confidence is not loud. It's structural.</textarea>
+      </div>
+      <div class="awesome-tag">
+        <span class="awesome-tag-text">I'm awesome.</span>
+        <span class="awesome-tag-note">always appended</span>
+      </div>
+    </div>
+
+    <!-- Random -->
+    <button class="btn-random" onclick="randomQuote()">✦ Random Quote</button>
+
+    <!-- Platform -->
+    <div>
+      <div class="sidebar-section-title">Platform</div>
+      <div class="platform-tabs">
+        <div class="platform-tab active" onclick="setPlatform('instagram', this)">
+          <span class="platform-tab-icon">📸</span>
+          <div class="platform-tab-info">
+            <span class="platform-tab-name">Instagram</span>
+            <span class="platform-tab-size">1080 × 1080 · Square</span>
+          </div>
+        </div>
+        <div class="platform-tab" onclick="setPlatform('tiktok', this)">
+          <span class="platform-tab-icon">🎵</span>
+          <div class="platform-tab-info">
+            <span class="platform-tab-name">TikTok / Story</span>
+            <span class="platform-tab-size">1080 × 1920 · 9:16</span>
+          </div>
+        </div>
+        <div class="platform-tab" onclick="setPlatform('pinterest', this)">
+          <span class="platform-tab-icon">📌</span>
+          <div class="platform-tab-info">
+            <span class="platform-tab-name">Pinterest</span>
+            <span class="platform-tab-size">1000 × 1500 · 2:3</span>
+          </div>
+        </div>
+        <div class="platform-tab" onclick="setPlatform('twitter', this)">
+          <span class="platform-tab-icon">𝕏</span>
+          <div class="platform-tab-info">
+            <span class="platform-tab-name">X / Twitter</span>
+            <span class="platform-tab-size">1200 × 675 · 16:9</span>
+          </div>
+        </div>
+        <div class="platform-tab" onclick="setPlatform('youtube', this)">
+          <span class="platform-tab-icon">▶︎</span>
+          <div class="platform-tab-info">
+            <span class="platform-tab-name">YouTube</span>
+            <span class="platform-tab-size">1280 × 720 · Thumbnail</span>
+          </div>
+        </div>
+        <div class="platform-tab" onclick="setPlatform('newsletter', this)">
+          <span class="platform-tab-icon">✉️</span>
+          <div class="platform-tab-info">
+            <span class="platform-tab-name">Newsletter Header</span>
+            <span class="platform-tab-size">600 × 200 · Banner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quote number -->
+    <div>
+      <div class="sidebar-section-title">Quote Number</div>
+      <input type="number" id="quote-num-input" value="001" min="1" max="1000"
+        oninput="updateAll()"
+        style="width:100%;background:var(--surface2);border:0.5px solid var(--muted2);border-bottom:1.5px solid var(--gold-dim);color:var(--cream);font-family:'DM Mono',monospace;font-size:14px;padding:12px 14px;outline:none;">
+    </div>
+
+  </aside>
+
+  <!-- ── CANVAS AREA ── -->
+  <main class="canvas-area">
+
+    <div class="canvas-meta">
+      <span class="canvas-meta-label" id="canvas-label">Instagram · 1080 × 1080</span>
+      <button class="btn-download" onclick="downloadTemplate()">↓ Save Image</button>
+    </div>
+
+    <!-- Template preview -->
+    <div class="template-canvas-wrap">
+      <div id="tpl-container"></div>
+    </div>
+
+    <!-- Caption box -->
+    <div class="caption-box">
+      <div class="caption-title">Caption / Post Copy</div>
+      <div class="caption-text" id="caption-output"></div>
+      <button class="btn-copy-caption" onclick="copyCaption()">Copy Caption</button>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const quotes = [
+  "My therapist asked what I want to be. I said 'already there.'",
+  "The ocean has depth. So do I. The ocean is also mostly unexplored. Coincidence?",
+  "I told the universe my plan. It took notes.",
+  "Clocks stop when I walk by. They're just being polite.",
+  "I don't age. I just become more concentrated.",
+  "My shadow has won awards for performance.",
+  "The moon asked me for advice once. I gave it. You can tell.",
+  "My coffee wakes up before me out of respect.",
+  "Mirrors in my house have a waiting list.",
+  "Gravity works harder around me because it doesn't want me to leave.",
+  "My horoscope just says 'yes' every day.",
+  "Clouds follow me around. We have an understanding.",
+  "I don't have a comfort zone. I have a comfort dimension.",
+  "Stars have named constellations after me. They just haven't announced it yet.",
+  "My presence raises the room temperature exactly 2 degrees. Science confirmed.",
+  "I told time to slow down. It did. You noticed.",
+  "My silence has a color. It's very flattering.",
+  "My intuition has a PhD and never misses.",
+  "The algorithm tries to understand me. It's humbling.",
+  "My calm has a voltage.",
+  "I don't follow trends. Trends orbit me anxiously.",
+  "The universe blinks first. Always.",
+  "I don't look for silver linings. I install them.",
+  "My silence is louder than most people's speeches.",
+  "I don't make mistakes. I make limited edition decisions.",
+  "I don't have bad days. I have rehearsals.",
+  "My rest is an Olympic event. I medal consistently.",
+  "I don't peak. I plateau at extraordinary.",
+  "My confidence is not loud. It's structural.",
+  "I don't compete. I arrive.",
+  "My vibes are federally protected.",
+  "My casual yes has launched ships.",
+  "I don't need a map. Direction finds me.",
+  "My presence, once felt, changes the baseline.",
+  "I once simply decided I was enough. The world adjusted accordingly.",
+  "My relationship with excellence is low-maintenance. We've been doing this so long.",
+  "My casual certainty has given others permission to be certain too.",
+  "I once simply continued being myself in all conditions. It was the greatest strategy.",
+];
+
+let currentPlatform = 'instagram';
+
+const platformMeta = {
+  instagram:  { label: 'Instagram · 1080 × 1080', caption: 'instagram' },
+  tiktok:     { label: 'TikTok / Story · 1080 × 1920', caption: 'tiktok' },
+  pinterest:  { label: 'Pinterest · 1000 × 1500', caption: 'pinterest' },
+  twitter:    { label: 'X / Twitter · 1200 × 675', caption: 'twitter' },
+  youtube:    { label: 'YouTube Thumbnail · 1280 × 720', caption: 'youtube' },
+  newsletter: { label: 'Newsletter Header · 600 × 200', caption: 'newsletter' },
+};
+
+function getQuote() {
+  return document.getElementById('quote-input').value.trim() || 'My confidence is not loud. It\'s structural.';
+}
+
+function getNum() {
+  const v = parseInt(document.getElementById('quote-num-input').value) || 1;
+  return String(v).padStart(3, '0');
+}
+
+function randomQuote() {
+  const q = quotes[Math.floor(Math.random() * quotes.length)];
+  document.getElementById('quote-input').value = q;
+  const num = Math.floor(Math.random() * 1000) + 1;
+  document.getElementById('quote-num-input').value = String(num).padStart(3,'0');
+  updateAll();
+}
+
+function setPlatform(p, el) {
+  currentPlatform = p;
+  document.querySelectorAll('.platform-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  updateAll();
+}
+
+function buildTemplate(platform, quote, num) {
+  const q = escHtml(quote);
+  const n = num;
+
+  const templates = {
+    instagram: `
+      <div class="tpl-canvas square tpl-instagram" id="download-target">
+        <div class="corner-tl"></div>
+        <div class="corner-tr"></div>
+        <div class="corner-bl"></div>
+        <div class="corner-br"></div>
+        <div class="quote-num">${n}</div>
+        <div class="brand-top">Bébé Energy™</div>
+        <div class="rule"></div>
+        <div class="quote-body">${q}</div>
+        <div class="quote-awesome">I'm awesome.</div>
+        <div class="brand-bottom">Bébé Energy™ · @bebeenergy</div>
+      </div>`,
+
+    tiktok: `
+      <div class="tpl-canvas story tpl-tiktok" id="download-target">
+        <div class="brand-pill">Bébé Energy™</div>
+        <div class="big-num">${n}</div>
+        <div class="quote-body">${q}</div>
+        <div class="quote-awesome">I'm awesome.</div>
+        <div class="gold-line"></div>
+        <div class="brand-bottom">
+          <span class="brand-name">Bébé Energy™</span>
+          <span class="brand-handle">@bebeenergy</span>
+        </div>
+      </div>`,
+
+    pinterest: `
+      <div class="tpl-canvas tpl-pinterest" id="download-target">
+        <div class="pin-top">
+          <div class="pin-big-text">I'm awesome.</div>
+          <div class="pin-body">${q}</div>
+        </div>
+        <div class="pin-bottom">
+          <span class="pin-brand">Bébé Energy™</span>
+          <span class="pin-tag">Quote No. ${n}<br>@bebeenergy</span>
+        </div>
+      </div>`,
+
+    twitter: `
+      <div class="tpl-canvas landscape tpl-twitter" id="download-target">
+        <div class="twitter-left"></div>
+        <div class="twitter-content">
+          <div class="twitter-quote">${q}</div>
+          <div class="twitter-awesome">I'm awesome.</div>
+          <div class="twitter-meta">
+            <span class="twitter-logo-mark">Bébé Energy™</span>
+            <span class="twitter-handle">@bebeenergy · No. ${n}</span>
+          </div>
+        </div>
+        <div class="twitter-big-bg">BE</div>
+      </div>`,
+
+    youtube: `
+      <div class="tpl-canvas landscape tpl-youtube" id="download-target">
+        <div class="yt-left-panel">
+          <div class="yt-episode">Quote No. ${n}</div>
+          <div class="yt-quote">${q}</div>
+          <div class="yt-awesome">I'm awesome.</div>
+          <div class="yt-brand">Bébé Energy™</div>
+        </div>
+        <div class="yt-divider"></div>
+        <div class="yt-right-panel">
+          <div class="yt-big-num">BE</div>
+        </div>
+      </div>`,
+
+    newsletter: `
+      <div class="tpl-canvas tpl-newsletter" id="download-target">
+        <div class="nl-brand">Bébé<br>Energy™</div>
+        <div class="nl-divider"></div>
+        <div class="nl-quote">${q} <span class="nl-awesome">I'm awesome.</span></div>
+      </div>`,
+  };
+
+  return templates[platform] || templates.instagram;
+}
+
+function buildCaption(platform, quote) {
+  const hashtags = {
+    instagram: '#BebeEnergy #ImAwesome #ConfidenceQuotes #DailyQuote #QuoteOfTheDay #Motivation #SelfLove #MindsetShift #GoldVibes #AfirmationQuotes',
+    tiktok:    '#BebeEnergy #ImAwesome #QuoteTok #MotivationTok #ConfidenceTok #DailyAffirmation #SelfLove #MindsetTok',
+    pinterest: '#BebeEnergy #ImAwesome #ConfidenceQuotes #QuoteAesthetic #DarkLuxury #GoldQuotes #DailyInspiration #SelfBelief',
+    twitter:   '#BebeEnergy #ImAwesome #DailyQuote',
+    youtube:   '',
+    newsletter: '',
+  };
+
+  const captions = {
+    instagram: `${quote}\n\nI'm awesome.\n\n✦\n\nThe full collection of 1,000 quotes is in the link in bio — four editions, instant download.\n\n${hashtags.instagram}`,
+    tiktok:    `${quote} I'm awesome. ✦\n\nTap for the full collection 🖤\n\n${hashtags.tiktok}`,
+    pinterest: `"${quote} I'm awesome." — Bébé Energy™\n\nThe complete collection of 1,000 original quotes. Link in bio. ✦\n\n${hashtags.pinterest}`,
+    twitter:   `${quote}\n\nI'm awesome.\n\n— Bébé Energy™ ${hashtags.twitter}`,
+    youtube:   `${quote} I'm awesome. — from The Bébé Energy™ Quote Collection. Full playlist in the description. Subscribe for weekly quote drops. 🖤`,
+    newsletter:`Dispatch No. [issue] · Quote of the week: "${quote} I'm awesome."`,
+  };
+
+  return captions[platform] || captions.instagram;
+}
+
+function updateAll() {
+  const q = getQuote();
+  const n = getNum();
+  const p = currentPlatform;
+
+  document.getElementById('tpl-container').innerHTML = buildTemplate(p, q, n);
+  document.getElementById('canvas-label').textContent = platformMeta[p].label;
+
+  const cap = buildCaption(p, q);
+  const capEl = document.getElementById('caption-output');
+  capEl.innerHTML = cap
+    .replace(/I'm awesome\./g, '<span class="caption-awesome">I\'m awesome.</span>')
+    .replace(/\n/g, '<br>');
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function copyCaption() {
+  const q = getQuote();
+  const text = buildCaption(currentPlatform, q);
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.btn-copy-caption');
+    const orig = btn.textContent;
+    btn.textContent = '✦ Copied!';
+    setTimeout(() => btn.textContent = orig, 2000);
+  });
+}
+
+function downloadTemplate() {
+  const el = document.getElementById('download-target');
+  if (!el) return;
+
+  // Use html2canvas if available, otherwise prompt
+  if (window.html2canvas) {
+    html2canvas(el, {
+      backgroundColor: null,
+      scale: 2,
+      useCORS: true,
+    }).then(canvas => {
+      const a = document.createElement('a');
+      a.download = `bebe-energy-${currentPlatform}-${getNum()}.png`;
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    });
+  } else {
+    // Load html2canvas dynamically
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+    script.onload = () => downloadTemplate();
+    document.head.appendChild(script);
+  }
+}
+
+// Init
+updateAll();
+</script>
+<script>
+/* Bébé Energy site nav */
+function toggleMobileNav() {
+  document.getElementById('be-nav-links').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const nav = document.querySelector('.be-nav');
+  if (nav && !nav.contains(e.target)) {
+    const links = document.getElementById('be-nav-links');
+    if (links) links.classList.remove('open');
+  }
+});
+// Highlight active page
+(function() {
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.be-nav-links a:not(.be-nav-cta)').forEach(a => {
+    if (a.getAttribute('href') === page) {
+      a.style.color = '#c8933a';
+    }
+  });
+})();
+</script>
+</body>
+</html>

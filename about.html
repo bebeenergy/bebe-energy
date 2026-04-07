@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bébé Energy™ — About</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Bebas+Neue&family=DM+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #060606;
+  --surface: #0e0e0e;
+  --surface2: #141414;
+  --gold: #c8933a;
+  --gold-light: #e6b85c;
+  --gold-dim: #5c4018;
+  --cream: #efe6d4;
+  --cream-mid: #b0a090;
+  --cream-dim: #6a5e50;
+  --muted: #272727;
+  --muted2: #333;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+}
+
+/* Grain */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -100px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.022;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── HERO ── */
+.about-hero {
+  min-height: 70dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 32px 80px;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 40%, #1e1200 0%, transparent 65%),
+    var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 10%; right: 10%;
+  height: 0.5px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+
+.about-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.6;
+  margin-bottom: 28px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.about-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(72px, 18vw, 160px);
+  line-height: 0.88;
+  letter-spacing: 2px;
+  background: linear-gradient(160deg, var(--cream) 0%, var(--gold-light) 45%, var(--gold) 75%, #7a5020 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 32px;
+  animation: fadeUp 0.8s ease 0.1s both;
+}
+
+.about-hero-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(18px, 3vw, 28px);
+  line-height: 1.5;
+  color: var(--cream);
+  opacity: 0.65;
+  max-width: 600px;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+
+.about-hero-quote span {
+  color: var(--gold-light);
+  font-weight: 700;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SECTIONS ── */
+.about-section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 80px 32px;
+}
+
+.about-section + .about-section {
+  border-top: 0.5px solid var(--muted);
+}
+
+.section-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.5;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: var(--muted);
+}
+
+.about-heading {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: 1.2;
+  color: var(--cream);
+  margin-bottom: 28px;
+}
+
+.about-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.9;
+  color: var(--cream);
+  opacity: 0.7;
+}
+
+.about-body p + p { margin-top: 20px; }
+.about-body strong { color: var(--gold-light); font-weight: 600; opacity: 1; }
+.about-body em { font-style: italic; color: var(--cream); opacity: 1; }
+
+/* ── PULL QUOTE ── */
+.about-pull {
+  background: var(--surface);
+  border-left: 3px solid var(--gold);
+  padding: 40px 44px;
+  margin: 48px 0;
+}
+
+.about-pull-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(20px, 3vw, 30px);
+  line-height: 1.45;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.about-pull-awesome {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: clamp(22px, 3.5vw, 34px);
+  color: var(--gold);
+}
+
+/* ── BRAND VALUES ── */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.value-card {
+  background: var(--surface);
+  padding: 32px 28px;
+  border-top: 2px solid var(--muted);
+  transition: border-color 0.25s;
+}
+.value-card:hover { border-top-color: var(--gold); }
+
+.value-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 52px;
+  color: var(--muted2);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.value-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 19px;
+  color: var(--gold-light);
+  margin-bottom: 10px;
+}
+
+.value-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--cream);
+  opacity: 0.55;
+}
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--surface);
+  border-top: 0.5px solid var(--muted);
+  border-bottom: 0.5px solid var(--muted);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 48px;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+}
+
+.stat-divider {
+  width: 0.5px;
+  height: 48px;
+  background: var(--muted);
+}
+
+@media (max-width: 500px) { .stat-divider { display: none; } }
+
+/* ── LINKS SECTION ── */
+.about-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.about-link-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  padding: 20px 28px;
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: all 0.2s;
+  gap: 16px;
+}
+
+.about-link-row:hover {
+  border-left-color: var(--gold);
+  background: var(--surface2);
+  transform: translateX(4px);
+}
+
+.about-link-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.about-link-icon { font-size: 18px; }
+
+.about-link-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--cream);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.about-link-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.5;
+}
+
+.about-link-arrow {
+  color: var(--gold-dim);
+  font-size: 14px;
+  transition: transform 0.2s, color 0.2s;
+}
+.about-link-row:hover .about-link-arrow {
+  transform: translateX(4px);
+  color: var(--gold);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--surface);
+  border-top: 0.5px solid var(--muted);
+  padding: 48px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-left .footer-logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 28px;
+  letter-spacing: 3px;
+  color: var(--gold-dim);
+  display: block;
+}
+
+.footer-left .footer-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--cream-dim);
+  margin-top: 6px;
+}
+
+.footer-right {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gold);
+  opacity: 0.35;
+  letter-spacing: 2px;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); }
+</style>
+<style>
+/* ═══════════════════════════════
+   BÉBÉ ENERGY — SHARED SITE NAV
+   ═══════════════════════════════ */
+.be-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  background: rgba(5,5,5,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 0.5px solid #1e1e1e;
+  gap: 24px;
+}
+
+.be-nav-logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: #c8933a;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+.be-nav-logo:hover { opacity: 0.75; }
+
+.be-nav-tm {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 10px;
+  color: #c8933a;
+  opacity: 0.5;
+  margin-left: 1px;
+}
+
+.be-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.be-nav-links a {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #a09080;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.be-nav-links a:hover { color: #c8933a; }
+
+.be-nav-links a.be-nav-cta {
+  background: #c8933a;
+  color: #060606;
+  padding: 8px 16px;
+  letter-spacing: 2px;
+  transition: background 0.2s;
+}
+.be-nav-links a.be-nav-cta:hover { background: #e6b85c; color: #060606; }
+
+/* Burger */
+.be-nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.be-nav-burger span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: #c8933a;
+  transition: all 0.3s;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .be-nav { padding: 16px 24px; }
+  .be-nav-burger { display: flex; }
+  .be-nav-links {
+    position: fixed;
+    top: 57px; left: 0; right: 0;
+    background: rgba(5,5,5,0.97);
+    flex-direction: column;
+    padding: 24px;
+    gap: 0;
+    border-bottom: 0.5px solid #1e1e1e;
+    transform: translateY(-110%);
+    transition: transform 0.3s ease;
+    align-items: flex-start;
+  }
+  .be-nav-links.open { transform: translateY(0); }
+  .be-nav-links li { width: 100%; }
+  .be-nav-links a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 0.5px solid #1a1a1a;
+    font-size: 10px;
+  }
+  .be-nav-links a.be-nav-cta {
+    margin-top: 12px;
+    text-align: center;
+    padding: 12px;
+    width: 100%;
+  }
+}
+/* ═══════════════════════════════ */
+</style>
+</head>
+<body>
+<!-- BÉBÉ ENERGY SITE NAV -->
+<nav class="be-nav">
+  <a href="index.html" class="be-nav-logo">Bébé Energy<span class="be-nav-tm">™</span></a>
+  <button class="be-nav-burger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="be-nav-links" id="be-nav-links">
+    <li><a href="collection.html">Collection</a></li>
+    <li><a href="index.html">Shop</a></li>
+    <li><a href="wallpaper.html">Wallpaper</a></li>
+    <li><a href="templates.html">Templates</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#products" class="be-nav-cta">Buy PDFs →</a></li>
+  </ul>
+</nav>
+<!-- END SITE NAV -->
+
+
+<!-- HERO -->
+<div class="about-hero">
+  <div class="about-eyebrow">The Brand · The Story · The Energy</div>
+  <div class="about-title">About</div>
+  <div class="about-hero-quote">
+    "Not a destination.<br>Not a performance.<br>
+    <span>A way of already being there.</span>"
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <span class="stat-num">1,000</span>
+    <span class="stat-label">Original Quotes</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <span class="stat-num">4</span>
+    <span class="stat-label">PDF Editions</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <span class="stat-num">1</span>
+    <span class="stat-label">Ending</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <span class="stat-num">∞</span>
+    <span class="stat-label">Reasons You're Awesome</span>
+  </div>
+</div>
+
+<!-- ORIGIN STORY -->
+<div class="about-section">
+  <div class="section-eyebrow">The Origin</div>
+  <div class="about-heading">Where it started</div>
+  <div class="about-body">
+    <p>Bébé Energy™ began with a single question: <strong>what if confidence wasn't something you built up — but something you remembered?</strong></p>
+    <p>Not the loud kind. Not the hustle-culture kind. Not the kind that needs an audience to exist. The quiet, structural, deeply grounded kind. The kind where the ocean waves at you specifically and you simply acknowledge it, because of course it does.</p>
+    <p>From that premise came 1,000 quotes — each one a slightly absurd, oddly satisfying, effortlessly certain observation. Each one ending the same way. Because some truths bear repeating. Because repetition, done right, isn't redundancy. It's ritual.</p>
+  </div>
+
+  <div class="about-pull">
+    <div class="about-pull-text">The concept of 'ordinary' skipped me.</div>
+    <div class="about-pull-awesome">I'm awesome.</div>
+  </div>
+
+  <div class="about-body">
+    <p>The collection grew into a brand. The brand grew into a voice. And the voice turned out to be <strong>something people recognized in themselves</strong> — the part that knows, even on a hard Tuesday, that they are cosmically, structurally, quietly, irrefutably awesome.</p>
+    <p>That's what Bébé Energy™ is. A mirror, not a megaphone. A reminder, not a lecture. A brand that meets you exactly where you already are — and tells you that's precisely where you were supposed to be.</p>
+  </div>
+</div>
+
+<!-- BRAND VALUES -->
+<div class="about-section">
+  <div class="section-eyebrow">The DNA</div>
+  <div class="about-heading">What Bébé Energy™ stands for</div>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-num">01</div>
+      <div class="value-title">Effortless</div>
+      <div class="value-desc">Nothing here is try-hard. The confidence is structural, not performed. If it strains, it's cut.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">02</div>
+      <div class="value-title">Absurd</div>
+      <div class="value-desc">The delusion is real but slight — hilarious, not cringe. The ocean waves at me specifically. Of course it does.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">03</div>
+      <div class="value-title">Warm</div>
+      <div class="value-desc">Never cold. Never above it. This isn't arrogance — it's an invitation. Anyone can feel this way. Everyone should.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">04</div>
+      <div class="value-title">Consistent</div>
+      <div class="value-desc">Every quote ends the same way. The anchor is the point. I'm awesome is not a punchline — it's a practice.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">05</div>
+      <div class="value-title">Precise</div>
+      <div class="value-desc">"The periodic table was reorganized after my input. Quietly." Specificity is everything. Vague positivity is not Bébé Energy™.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">06</div>
+      <div class="value-title">Original</div>
+      <div class="value-desc">All 1,000 quotes are 100% original. Nothing borrowed, nothing recycled. Every word is new and means it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- THE COLLECTION -->
+<div class="about-section">
+  <div class="section-eyebrow">The Work</div>
+  <div class="about-heading">The collection</div>
+  <div class="about-body">
+    <p>1,000 quotes. Written in a single creative session with <strong>obsessive attention to tone</strong>. Each one passes the same test: is it oddly satisfying? Does it have absurd confidence? Does it bend reality slightly without breaking it? Is it effortless — never try-hard? And does it land, with complete calm certainty, on: <em>I'm awesome.</em></p>
+    <p>The quotes are available as beautifully designed <strong>PDF editions</strong> — dark luxury aesthetic, gold typography, Bébé Energy™ branded throughout. Four editions: 100, 300, 500, and 1,000 quotes. An interactive version lives free on this site. A wallpaper generator serves up a random quote every tap.</p>
+    <p>This is a living collection. More quotes will come. The energy shows no signs of running out.</p>
+  </div>
+
+  <div class="about-pull" style="border-left-color: var(--muted2);">
+    <div class="about-pull-text">My casual excellence is not something I perform for others. It is the shape my days naturally take.</div>
+    <div class="about-pull-awesome">I'm awesome.</div>
+  </div>
+</div>
+
+<!-- EXPLORE -->
+<div class="about-section">
+  <div class="section-eyebrow">Explore</div>
+  <div class="about-heading">Everything Bébé Energy™</div>
+  <div class="about-links">
+    <a href="collection.html" class="about-link-row">
+      <div class="about-link-left">
+        <span class="about-link-icon">✦</span>
+        <div>
+          <span class="about-link-title">The Full Collection</span>
+          <span class="about-link-sub">All 1,000 quotes · Interactive · Free</span>
+        </div>
+      </div>
+      <span class="about-link-arrow">→</span>
+    </a>
+    <a href="index.html#products" class="about-link-row">
+      <div class="about-link-left">
+        <span class="about-link-icon">📄</span>
+        <div>
+          <span class="about-link-title">Shop the PDF Editions</span>
+          <span class="about-link-sub">100 · 300 · 500 · 1,000 quotes · From $5</span>
+        </div>
+      </div>
+      <span class="about-link-arrow">→</span>
+    </a>
+    <a href="wallpaper.html" class="about-link-row">
+      <div class="about-link-left">
+        <span class="about-link-icon">📱</span>
+        <div>
+          <span class="about-link-title">Wallpaper Generator</span>
+          <span class="about-link-sub">New quote every tap · Free · Phone ready</span>
+        </div>
+      </div>
+      <span class="about-link-arrow">→</span>
+    </a>
+    <a href="templates.html" class="about-link-row">
+      <div class="about-link-left">
+        <span class="about-link-icon">🎨</span>
+        <div>
+          <span class="about-link-title">Social Media Templates</span>
+          <span class="about-link-sub">Instagram · TikTok · Pinterest · X · YouTube</span>
+        </div>
+      </div>
+      <span class="about-link-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <span class="footer-logo">Bébé Energy™</span>
+    <span class="footer-copy">© 2025 Bébé Energy™ · All rights reserved</span>
+  </div>
+  <div class="footer-right">I'm awesome.</div>
+</footer>
+
+<script>
+/* Bébé Energy site nav */
+function toggleMobileNav() {
+  document.getElementById('be-nav-links').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const nav = document.querySelector('.be-nav');
+  if (nav && !nav.contains(e.target)) {
+    const links = document.getElementById('be-nav-links');
+    if (links) links.classList.remove('open');
+  }
+});
+// Highlight active page
+(function() {
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.be-nav-links a:not(.be-nav-cta)').forEach(a => {
+    if (a.getAttribute('href') === page) {
+      a.style.color = '#c8933a';
+    }
+  });
+})();
+</script>
+</body>
+</html>

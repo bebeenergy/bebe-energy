@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1000 Reasons I'm Awesome</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --card: #111111;
+    --gold: #d4a843;
+    --cream: #f5efe0;
+    --rust: #c0392b;
+    --sage: #7fb069;
+    --lavender: #9b89c4;
+    --accent: #d4a843;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Space Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  header {
+    text-align: center;
+    padding: 100px 20px 40px;
+    position: relative;
+  }
+
+  header::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin-top: 40px;
+  }
+
+  .title-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(72px, 14vw, 160px);
+    line-height: 0.9;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--gold) 50%, var(--cream) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--cream);
+    opacity: 0.5;
+    margin-top: 12px;
+  }
+
+  /* Controls */
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 30px 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn:hover {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  .btn.active {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  .counter {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 48px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .counter-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    opacity: 0.4;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  /* Search */
+  .search-wrap {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    padding: 0 20px;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid #333;
+    border-bottom: 2px solid var(--gold);
+    color: var(--cream);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    padding: 14px 18px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-wrap input::placeholder { opacity: 0.35; }
+  .search-wrap input:focus { border-bottom-color: var(--cream); }
+
+  /* Quote display modes */
+  .view-controls {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 30px;
+  }
+
+  /* SPOTLIGHT MODE */
+  #spotlight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  .spotlight-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 120px;
+    line-height: 1;
+    color: #1a1a1a;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .spotlight-quote {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(22px, 4vw, 42px);
+    line-height: 1.35;
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.4s ease;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .spotlight-quote em {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .spotlight-nav {
+    display: flex;
+    gap: 20px;
+    margin-top: 48px;
+    align-items: center;
+  }
+
+  .nav-arrow {
+    width: 52px;
+    height: 52px;
+    border: 1px solid #333;
+    background: transparent;
+    color: var(--cream);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .nav-arrow:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .nav-random {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    padding: 10px;
+  }
+  .nav-random:hover { opacity: 1; }
+
+  /* GRID MODE */
+  #grid-view {
+    display: none;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    columns: 4;
+    column-gap: 16px;
+  }
+
+  @media (max-width: 1200px) { #grid-view { columns: 3; } }
+  @media (max-width: 800px) { #grid-view { columns: 2; } }
+  @media (max-width: 500px) { #grid-view { columns: 1; } }
+
+  .grid-card {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    padding: 24px 20px 20px;
+    background: var(--card);
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    animation: cardIn 0.3s ease both;
+  }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .grid-card:hover {
+    border-left-color: var(--gold);
+    transform: translateX(4px);
+  }
+
+  .grid-card.color-0 { border-left-color: #333; }
+  .grid-card.color-0:hover { border-left-color: var(--gold); }
+
+  .card-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 13px;
+    color: #444;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  .card-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--cream);
+    opacity: 0.85;
+  }
+
+  .card-text em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .grid-card:hover .card-text { opacity: 1; }
+
+  /* LIST MODE */
+  #list-view {
+    display: none;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  .list-item {
+    display: flex;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid #1a1a1a;
+    align-items: baseline;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .list-item:hover { padding-left: 8px; }
+
+  .list-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 28px;
+    color: #333;
+    min-width: 52px;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+
+  .list-item:hover .list-num { color: var(--gold); }
+
+  .list-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--cream);
+    opacity: 0.75;
+    flex: 1;
+  }
+
+  .list-text em { color: var(--gold); font-style: normal; }
+  .list-item:hover .list-text { opacity: 1; }
+
+  /* SEARCH RESULTS */
+  #search-results {
+    display: none;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  .search-meta {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    opacity: 0.7;
+  }
+
+  /* FAVORITE strip */
+  #fav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #0d0d0d;
+    border-top: 1px solid #222;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 100;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+  }
+
+  #fav-bar.visible { transform: translateY(0); }
+
+  .fav-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+    white-space: nowrap;
+  }
+
+  .fav-count {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 32px;
+    color: var(--gold);
+  }
+
+  .fav-preview {
+    flex: 1;
+    font-size: 12px;
+    opacity: 0.4;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .fav-heart {
+    background: none;
+    border: 1px solid #333;
+    color: var(--cream);
+    font-size: 16px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .fav-heart.active { border-color: #e74c3c; color: #e74c3c; }
+  .fav-heart:hover { border-color: #e74c3c; color: #e74c3c; }
+
+  .btn-export {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid #333;
+    color: var(--cream);
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-export:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Toast */
+  #toast {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-80px);
+    background: var(--gold);
+    color: var(--bg);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    z-index: 9999;
+    transition: transform 0.3s;
+    pointer-events: none;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Keyboard hint */
+  .key-hint {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.2;
+    padding-bottom: 80px;
+  }
+
+  .key-hint kbd {
+    border: 1px solid #444;
+    padding: 2px 6px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 40px 20px 100px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 36px;
+    letter-spacing: 4px;
+    color: #222;
+  }
+
+  .bebe-brand {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    opacity: 0.5;
+    margin-top: 8px;
+  }
+</style>
+<style>
+/* ═══════════════════════════════
+   BÉBÉ ENERGY — SHARED SITE NAV
+   ═══════════════════════════════ */
+.be-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  background: rgba(5,5,5,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 0.5px solid #1e1e1e;
+  gap: 24px;
+}
+
+.be-nav-logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: #c8933a;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+.be-nav-logo:hover { opacity: 0.75; }
+
+.be-nav-tm {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 10px;
+  color: #c8933a;
+  opacity: 0.5;
+  margin-left: 1px;
+}
+
+.be-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.be-nav-links a {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #a09080;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.be-nav-links a:hover { color: #c8933a; }
+
+.be-nav-links a.be-nav-cta {
+  background: #c8933a;
+  color: #060606;
+  padding: 8px 16px;
+  letter-spacing: 2px;
+  transition: background 0.2s;
+}
+.be-nav-links a.be-nav-cta:hover { background: #e6b85c; color: #060606; }
+
+/* Burger */
+.be-nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.be-nav-burger span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: #c8933a;
+  transition: all 0.3s;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .be-nav { padding: 16px 24px; }
+  .be-nav-burger { display: flex; }
+  .be-nav-links {
+    position: fixed;
+    top: 57px; left: 0; right: 0;
+    background: rgba(5,5,5,0.97);
+    flex-direction: column;
+    padding: 24px;
+    gap: 0;
+    border-bottom: 0.5px solid #1e1e1e;
+    transform: translateY(-110%);
+    transition: transform 0.3s ease;
+    align-items: flex-start;
+  }
+  .be-nav-links.open { transform: translateY(0); }
+  .be-nav-links li { width: 100%; }
+  .be-nav-links a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 0.5px solid #1a1a1a;
+    font-size: 10px;
+  }
+  .be-nav-links a.be-nav-cta {
+    margin-top: 12px;
+    text-align: center;
+    padding: 12px;
+    width: 100%;
+  }
+}
+/* ═══════════════════════════════ */
+</style>
+</head>
+<body>
+<!-- BÉBÉ ENERGY SITE NAV -->
+<nav class="be-nav">
+  <a href="index.html" class="be-nav-logo">Bébé Energy<span class="be-nav-tm">™</span></a>
+  <button class="be-nav-burger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="be-nav-links" id="be-nav-links">
+    <li><a href="collection.html">Collection</a></li>
+    <li><a href="index.html">Shop</a></li>
+    <li><a href="wallpaper.html">Wallpaper</a></li>
+    <li><a href="templates.html">Templates</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#products" class="be-nav-cta">Buy PDFs →</a></li>
+  </ul>
+</nav>
+<!-- END SITE NAV -->
+
+
+<div id="toast"></div>
+
+<header>
+  <div class="title-eyebrow">A Complete Collection</div>
+  <h1>I'm Awesome</h1>
+  <div class="subtitle">1,000 irrefutable pieces of evidence</div>
+</header>
+
+<div class="controls">
+  <div>
+    <div class="counter" id="quote-counter">1</div>
+    <div class="counter-label">of 1000</div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    <div class="view-controls">
+      <button class="btn active" id="btn-spotlight" onclick="setMode('spotlight')">Spotlight</button>
+      <button class="btn" id="btn-grid" onclick="setMode('grid')">Grid</button>
+      <button class="btn" id="btn-list" onclick="setMode('list')">List</button>
+      <button class="btn" id="btn-favs" onclick="setMode('favs')">★ Saved</button>
+    </div>
+  </div>
+</div>
+
+<div class="search-wrap">
+  <input type="text" id="search-input" placeholder="Search all 1000 quotes..." oninput="handleSearch(this.value)">
+</div>
+
+<!-- SPOTLIGHT -->
+<div id="spotlight">
+  <div class="spotlight-num" id="spot-bg-num">001</div>
+  <div class="spotlight-quote" id="spot-quote"></div>
+  <div class="spotlight-nav">
+    <button class="nav-arrow" onclick="navigate(-1)">←</button>
+    <button class="fav-heart" id="spot-fav" onclick="toggleFav(currentIndex)" title="Save quote">♡</button>
+    <button class="nav-random" onclick="goRandom()">✦ Random</button>
+    <button class="fav-heart" id="spot-copy" onclick="copyQuote(currentIndex)" title="Copy">⊕</button>
+    <button class="nav-arrow" onclick="navigate(1)">→</button>
+  </div>
+</div>
+
+<!-- GRID -->
+<div id="grid-view"></div>
+
+<!-- LIST -->
+<div id="list-view"></div>
+
+<!-- SEARCH RESULTS -->
+<div id="search-results">
+  <div class="search-meta" id="search-meta"></div>
+</div>
+
+<!-- FAV BAR -->
+<div id="fav-bar">
+  <div class="fav-label">Saved</div>
+  <div class="fav-count" id="fav-count">0</div>
+  <div class="fav-preview" id="fav-preview"></div>
+  <button class="btn-export" onclick="exportFavs()">Export</button>
+</div>
+
+<div class="key-hint" id="key-hint">
+  <kbd>←</kbd> <kbd>→</kbd> navigate &nbsp;·&nbsp; <kbd>Space</kbd> random &nbsp;·&nbsp; <kbd>S</kbd> save
+</div>
+
+<footer>
+  <div class="footer-logo">I'M AWESOME</div>
+  <div class="bebe-brand">Bébé Energy™</div>
+</footer>
+
+<script>
+const quotes = [
+"My therapist asked what I want to be. I said 'already there.' I'm awesome.",
+"The ocean has depth. So do I. The ocean is also mostly unexplored. Coincidence? I'm awesome.",
+"I told the universe my plan. It took notes. I'm awesome.",
+"Clocks stop when I walk by. They're just being polite. I'm awesome.",
+"Scientists discovered a new element. It behaves exactly like me: unpredictable and magnetic. I'm awesome.",
+"I don't age. I just become more concentrated. I'm awesome.",
+"My shadow has won awards for performance. I'm awesome.",
+"The moon asked me for advice once. I gave it. You can tell. I'm awesome.",
+"My coffee wakes up before me out of respect. I'm awesome.",
+"I sneezed and a philosopher got a new idea. I'm awesome.",
+"Mirrors in my house have a waiting list. I'm awesome.",
+"Gravity works harder around me because it doesn't want me to leave. I'm awesome.",
+"My horoscope just says 'yes' every day. I'm awesome.",
+"Clouds follow me around. We have an understanding. I'm awesome.",
+"I don't have a comfort zone. I have a comfort dimension. I'm awesome.",
+"My alarm clock sets itself based on my mood. It's learned. I'm awesome.",
+"Stars have named constellations after me. They just haven't announced it yet. I'm awesome.",
+"My presence raises the room temperature exactly 2 degrees. Science confirmed. I'm awesome.",
+"I told time to slow down. It did. You noticed. I'm awesome.",
+"Birds fly in my favorite shapes when I pass. We worked it out. I'm awesome.",
+"My silence has a color. It's very flattering. I'm awesome.",
+"Elevators go faster when I'm inside. We have chemistry. I'm awesome.",
+"My intuition has a PhD and never misses. I'm awesome.",
+"Flowers bloom in advance when they hear I'm coming. I'm awesome.",
+"The algorithm tries to understand me. It's humbling. I'm awesome.",
+"My immune system has never lost a fight. Neither have I. I'm awesome.",
+"I blink and things become clearer for everyone nearby. I'm awesome.",
+"Soil is richer where I've stood. Farmers know. I'm awesome.",
+"My morning routine starts the day for everyone else. I'm awesome.",
+"Even my afterthoughts are someone else's main idea. I'm awesome.",
+"My exhale is a gentle wind of clarity. I'm awesome.",
+"I walk into rooms and they feel more organized. I can't explain it. I'm awesome.",
+"Soup tastes better when I'm nearby. This has been documented. I'm awesome.",
+"My laugh has been used as a blueprint for joy. I'm awesome.",
+"Rain reschedules around my plans. We have a standing agreement. I'm awesome.",
+"My daydreams have sequels. I'm awesome.",
+"I dream in 4K and the resolution is improving. I'm awesome.",
+"My patience outlasted marble. Marble is aware of this. I'm awesome.",
+"The sun checks my location before deciding what time to set. I'm awesome.",
+"I don't have bad days. I have rehearsals. I'm awesome.",
+"My handwriting has cured mild anxieties. I've been told. I'm awesome.",
+"I nodded at a problem once and it solved itself out of respect. I'm awesome.",
+"My energy is renewable. Naturally. I'm awesome.",
+"Trees stand straighter when I pass. It's mutual respect. I'm awesome.",
+"My silence is louder than most people's speeches. I'm awesome.",
+"Breakfast tastes like ambition when I make it. I'm awesome.",
+"The concept of 'luck' follows me around like an intern. I'm awesome.",
+"My potential has its own fan club. I'm awesome.",
+"I don't make mistakes. I make limited edition decisions. I'm awesome.",
+"My frequency is rare but the receivers are everywhere. I'm awesome.",
+"Cats stare at me because they recognize excellence. I'm awesome.",
+"My posture has inspired furniture design. I'm awesome.",
+"I exist so fully that nearby mirrors have to sit down. I'm awesome.",
+"The concept of 'enough' has never applied to me. I'm awesome.",
+"My voice has a warmth rating of exceptional. I'm awesome.",
+"I inhale air and exhale inspiration. It's involuntary. I'm awesome.",
+"Spiders build near me for networking purposes. I'm awesome.",
+"My curiosity has its own gravitational field. I'm awesome.",
+"I walked past a library and three books rewrote themselves. I'm awesome.",
+"My questions have answers before I finish asking. I'm awesome.",
+"The periodic table was reorganized after my input. Quietly. I'm awesome.",
+"My bedtime is when the moon gets cozy. I'm awesome.",
+"I have a signature energy. Experts are studying it. I'm awesome.",
+"My footsteps have a rhythm that calms small animals. I'm awesome.",
+"The universe blinks first. Always. I'm awesome.",
+"My feedback has made mountains reconsider their angles. I'm awesome.",
+"I don't look for silver linings. I install them. I'm awesome.",
+"Time zones negotiate with me personally. I'm awesome.",
+"My vibes have been cited in wellness journals. I'm awesome.",
+"I sat near a painting and it got more interesting. I'm awesome.",
+"My thoughts arrive early and stay organized. I'm awesome.",
+"I smiled at traffic and it moved. I'm awesome.",
+"My instincts have a backup plan. I'm awesome.",
+"I once gave a river a compliment. It deepened. I'm awesome.",
+"My ideas have offspring. They're doing well. I'm awesome.",
+"The concept of 'ordinary' skipped me. I'm awesome.",
+"My presence is considered a weather event in some circles. I'm awesome.",
+"I don't follow trends. Trends orbit me anxiously. I'm awesome.",
+"My calm has a voltage. I'm awesome.",
+"I've aged backwards twice. Just to see. I'm awesome.",
+"Clouds have offered me a position. I'm considering it. I'm awesome.",
+"My focus is legally a superpower in seven countries. I'm awesome.",
+"I once outpaced a thought. The thought was impressed. I'm awesome.",
+"My aura has been mistaken for a natural phenomenon. Correctly. I'm awesome.",
+"The concept of 'limits' looked at me and kept walking. I'm awesome.",
+"My shadow brings warmth. Physics is confused. I'm awesome.",
+"I don't overthink. I deeply invest. I'm awesome.",
+"My casual comments become someone's life motto. It's a pattern. I'm awesome.",
+"I hummed once and a bird changed its migration plan. I'm awesome.",
+"My memory is precise. Even about things that haven't happened yet. I'm awesome.",
+"The dictionary looked me up for clarification. I'm awesome.",
+"I exist in multiple dimensions but only charge for one. I'm awesome.",
+"My glow has a consistent Pantone number. I'm awesome.",
+"The concept of 'average' filed a formal complaint. I ignored it. I'm awesome.",
+"My clarity has cured mild foggy thinking in others. I'm awesome.",
+"I put down a book and it remembered things for me later. I'm awesome.",
+"My comfort has been rated 5 stars. I'm awesome.",
+"Sunsets are inspired by my general direction. I'm awesome.",
+"I once organized my thoughts and a nearby spreadsheet improved. I'm awesome.",
+"My nap recharges the room. I'm awesome.",
+"I breathe intentionally. The plants notice. I'm awesome.",
+"My calmness has its own ISO certification. I'm awesome.",
+"Clocks around me run on a slightly more elegant time. I'm awesome.",
+"I don't need a map. Direction finds me. I'm awesome.",
+"My reflection gives better advice than most professionals. I'm awesome.",
+"I whispered to a problem and it got smaller. I'm awesome.",
+"My voice adds texture to silence. I'm awesome.",
+"The sky has copied my color combinations more than once. I'm awesome.",
+"I once looked at a math problem sympathetically. It solved itself. I'm awesome.",
+"My stride has been called 'architecturally sound.' I'm awesome.",
+"I age like a concept: indefinitely and with increasing relevance. I'm awesome.",
+"The ocean waves at me specifically. I acknowledge it. I'm awesome.",
+"My opinions arrive pre-ripened. I'm awesome.",
+"I give advice. Proverbs take notes. I'm awesome.",
+"My laugh is a key that unlocks certain rooms. I'm awesome.",
+"I sneeze and somewhere a cloud gets organized. I'm awesome.",
+"My instincts are fluent in 12 languages. I'm awesome.",
+"I wrote my name once. The pen felt honored. I'm awesome.",
+"My warmth has been used as a unit of measurement. I'm awesome.",
+"I stood near a confused map and it corrected itself. I'm awesome.",
+"My edges are elegant and the center is extraordinary. I'm awesome.",
+"Whales communicate on my frequency when they need clarity. I'm awesome.",
+"My side eye has fixed structural problems in arguments. I'm awesome.",
+"I once raised an eyebrow and a whole committee reversed their decision. I'm awesome.",
+"My morning breath smells like cedar and fresh resolve. I'm awesome.",
+"I corrected someone gently and a rainbow appeared over their house. I'm awesome.",
+"My typing has rhythm. Songs have been written about it. I'm awesome.",
+"I stared at a blank wall and it gave me three ideas. I'm awesome.",
+"My sleep schedule is circadian royalty. I'm awesome.",
+"I walked slowly once. Everyone called it a masterclass. I'm awesome.",
+"The concept of 'settling' saw me coming and crossed the street. I'm awesome.",
+"My decisions age like fine legislation. I'm awesome.",
+"I once said nothing and a meeting reached consensus. I'm awesome.",
+"My feet know where they're going before I decide. I'm awesome.",
+"I doodled once. It was acquired by a collection. I'm awesome.",
+"My habits have habits. They're also excellent. I'm awesome.",
+"I don't get lost. I discover alternate routes. I'm awesome.",
+"My presence has been cited as a contributing factor in pleasant days. I'm awesome.",
+"I looked at a dessert with intention. It tasted better. I'm awesome.",
+"My opinions are well-rested and extremely sure of themselves. I'm awesome.",
+"I've been asked to autograph skies. Twice. I'm awesome.",
+"My small talk has caused breakthroughs. I try not to think about it. I'm awesome.",
+"I fold a napkin and someone calls it origami. I'm awesome.",
+"The laws of physics apply to me differently. We negotiated. I'm awesome.",
+"My to-do list is also my declaration of world readiness. I'm awesome.",
+"I don't chase sunsets. They arrive when I'm ready. I'm awesome.",
+"My handshake has a documented after-warmth. I'm awesome.",
+"I arrived and the party understood what it was trying to be. I'm awesome.",
+"My energy is uninsured because nothing can damage it. I'm awesome.",
+"I made eye contact with ambition. It followed me home. I'm awesome.",
+"My plans have contingency plans that are better than the original. I'm awesome.",
+"I once told a storm to be brief. It was. I'm awesome.",
+"My posture communicates in a language chairs understand. I'm awesome.",
+"I exist precisely. No excess, no shortage. I'm awesome.",
+"My rest is an Olympic event. I medal consistently. I'm awesome.",
+"I thought about something calmly and three experts agreed later. I'm awesome.",
+"My casual Tuesdays are other people's peak experiences. I'm awesome.",
+"I named a feeling once. It stuck. I'm awesome.",
+"My presence at a table improves the meal's flavor. I'm awesome.",
+"I once corrected the wind's direction with a look. I'm awesome.",
+"My kindness has load-bearing properties. I'm awesome.",
+"I once told the truth so clearly that everyone in the room felt lighter. I'm awesome.",
+"My arrival is considered a soft opening. I'm awesome.",
+"I don't peak. I plateau at extraordinary. I'm awesome.",
+"My handwriting has inspired font families. I'm awesome.",
+"I sat near a deadline and it extended itself out of respect. I'm awesome.",
+"My humor lands so softly that people thank it. I'm awesome.",
+"I changed my mind once. The new mind was superior. I'm awesome.",
+"My memory is selective in a strategic way that borders on genius. I'm awesome.",
+"I don't require permission to be excellent. I never have. I'm awesome.",
+"My footprint in sand has been photographed as art. I'm awesome.",
+"I once paused a conversation. The silence was the best part. I'm awesome.",
+"My grocery list has been called 'visionary.' I'm awesome.",
+"The weather checks my mood before making decisions. I'm awesome.",
+"I nod and projects accelerate. I'm awesome.",
+"My errors are extremely educational for everyone involved. I'm awesome.",
+"I left a room and people referred to it as 'before and after.' I'm awesome.",
+"My silence is fluent. I'm awesome.",
+"I once overheard my own echo and it sounded even better. I'm awesome.",
+"My hydration is exceptional. I'm clearly mostly brilliance. I'm awesome.",
+"I paused mid-sentence and someone wrote it down. I'm awesome.",
+"My potential has a longer runway than most international airports. I'm awesome.",
+"I answered a question and a room rearranged its furniture mentally. I'm awesome.",
+"My creative block lasts exactly 11 minutes. Then greatness. I'm awesome.",
+"I once looked at a mountain and it straightened up. I'm awesome.",
+"My presence at meetings reduces the need for follow-up emails. I'm awesome.",
+"I have a relationship with excellence that's been going strong for years. I'm awesome.",
+"My sleep is so good it has a director's cut. I'm awesome.",
+"I once moved a piece of furniture and the room applauded. I'm awesome.",
+"My coffee order is considered a personality test result. I'm awesome.",
+"I've been described as 'an event' by meteorologists. I'm awesome.",
+"My casual opinions have been published. Not by me. I'm awesome.",
+"I once blinked slowly at a problem and it thanked me. I'm awesome.",
+"My breath holds the record in three categories. I'm awesome.",
+"I said 'hmm' thoughtfully and someone had a breakthrough. I'm awesome.",
+"My calendar has self-respect. Things show up on time. I'm awesome.",
+"I aged a cheese once with a glance. It was magnificent. I'm awesome.",
+"My nervous system is tuned like a championship instrument. I'm awesome.",
+"I don't run late. Time runs generous. I'm awesome.",
+"My curiosity has a passport. It's well-stamped. I'm awesome.",
+"I once sat quietly and an entire field of experts revised their position. I'm awesome.",
+"My enthusiasm is load-bearing. Rooms depend on it. I'm awesome.",
+"I read a map once. It updated itself. I'm awesome.",
+"My laughter has been described as 'healing-adjacent.' I'm awesome.",
+"I once sighed and a poem was born nearby. I'm awesome.",
+"My decisions are reversible but rarely need to be. I'm awesome.",
+"I told the truth effortlessly. It landed with a standing ovation. I'm awesome.",
+"My walk has been featured in a motivational seminar. I didn't attend. I'm awesome.",
+"I don't have butterflies. I have focused hummingbirds. I'm awesome.",
+"My concentration has its own thermal properties. I'm awesome.",
+"I once sat at a piano. The keys felt chosen. I'm awesome.",
+"My morning sets a standard. The rest of the day complies. I'm awesome.",
+"I don't compete. I arrive. I'm awesome.",
+"My opinions have survived multiple centuries without changing. I'm awesome.",
+"I don't burn bridges. I construct ferries. I'm awesome.",
+"My skin is literally a masterpiece. Scientists use it as a baseline. I'm awesome.",
+"I once looked at the stars and three of them shifted. Voluntarily. I'm awesome.",
+"My weekdays have the quality of other people's vacations. I'm awesome.",
+"I sneezed once and somewhere a poet finished their draft. I'm awesome.",
+"My feedback has reduced industry error rates. Statistically. I'm awesome.",
+"I sat next to someone struggling and their code compiled. I'm awesome.",
+"My thoughts are pre-fact-checked. I'm awesome.",
+"I make decisions so cleanly the sound is satisfying. I'm awesome.",
+"My posture has fixed the posture of nearby furniture. I'm awesome.",
+"I held a door. The building seemed grateful. I'm awesome.",
+"My casual playlist has soundtracked revolutions. I'm awesome.",
+"I exist in a category that hasn't been named yet. I'm awesome.",
+"My schedule loves me so it never overfills. I'm awesome.",
+"I walked into a negotiation and both sides felt better. I'm awesome.",
+"My handwriting has been carbon-dated to 'timeless.' I'm awesome.",
+"I thought about a solution. It materialized before I finished. I'm awesome.",
+"My calmness in chaos is statistically anomalous. I'm awesome.",
+"I once stood near a broken elevator and it resumed. I'm awesome.",
+"My perspective has changed people's relationship with their furniture. I'm awesome.",
+"I described a color once. The color was honored. I'm awesome.",
+"My casual wave has started communities. I'm awesome.",
+"I once told the ocean it was doing a good job. It has been thriving. I'm awesome.",
+"My presence in a waiting room reduces the perceived wait time. I'm awesome.",
+"I sneezed during a storm and the storm apologized. I'm awesome.",
+"My opinion on pasta is considered authoritative in three countries. I'm awesome.",
+"I stirred a drink and it considered its life choices. I'm awesome.",
+"My reading speed is respectful. Books have mentioned this. I'm awesome.",
+"I once sat in a chair and it became the best chair in the room. I'm awesome.",
+"My exhale refreshes rooms. This is measurable. I'm awesome.",
+"I held a thought gently for three days. It became a movement. I'm awesome.",
+"My nods are binding. People know this. I'm awesome.",
+"I walked past a broken clock. It resumed. I'm awesome.",
+"My rest face looks like a TED Talk. I'm awesome.",
+"I drank water once and it felt like a wellness intervention. I'm awesome.",
+"My attention has been called 'a gift wrapped in focus.' I'm awesome.",
+"I stared at a cloud until it made more sense. I'm awesome.",
+"My laugh lines are considered topography. I'm awesome.",
+"I once shrugged and it resolved a two-week debate. I'm awesome.",
+"My optimism has structural integrity. I'm awesome.",
+"I described a smell once. It became a candle. Best-selling. I'm awesome.",
+"My casual confidence has caused people to re-examine their certainties. I'm awesome.",
+"I took a long pause and the room started taking notes. I'm awesome.",
+"My grocery list makes economists feel seen. I'm awesome.",
+"I nodded at a concept and it became a field of study. I'm awesome.",
+"My silence between words is considered punctuation of the highest order. I'm awesome.",
+"I once told a spreadsheet it looked fine. It restructured itself beautifully. I'm awesome.",
+"My casual advice is cited without attribution. Regularly. I'm awesome.",
+"I walked backward once. Everyone called it visionary. I'm awesome.",
+"My commitment to excellence is also excellent. I'm awesome.",
+"I once held ice and it stayed longer to spend time with me. I'm awesome.",
+"My perspective on Tuesdays has helped people. I'm awesome.",
+"I touched a recipe and it became a family tradition. I'm awesome.",
+"My daily habits could be bottled and sold as a lifestyle. I'm awesome.",
+"I once stared at a compass. It agreed with me. I'm awesome.",
+"My confusion lasts 4 seconds. Then insight. I'm awesome.",
+"I stirred a pot and it became someone's favorite meal memory. I'm awesome.",
+"My creativity operates on a frequency that requires a special receiver. I'm awesome.",
+"I told a joke. Three linguists requested a transcript. I'm awesome.",
+"My silhouette has been mistaken for a monument. I'm awesome.",
+"I didn't panic once and it became case study material. I'm awesome.",
+"My capacity for wonder is fully funded. I'm awesome.",
+"I once paused before speaking. A philosopher wrote it down. I'm awesome.",
+"My schedule reflects my values and my values reflect greatness. I'm awesome.",
+"I once wore Tuesday like it was a premiere. I'm awesome.",
+"My perspective on sandwiches is somehow also about life. I'm awesome.",
+"I slept on a decision and woke up with three better ones. I'm awesome.",
+"My presence changes the font weight of a room. Everything becomes bolder. I'm awesome.",
+"I once told the truth so fast it arrived before the question. I'm awesome.",
+"My edges are clean. My center is astonishing. I'm awesome.",
+"I once lost my keys. They came back apologetic. I'm awesome.",
+"My brain has an open-door policy for good ideas. They show up regularly. I'm awesome.",
+"I looked at a plant once with full belief. It thrived. I'm awesome.",
+"My voice in a room is like bass in a song: felt first. I'm awesome.",
+"I stretch in the morning and the day lengthens accordingly. I'm awesome.",
+"My casual intelligence is exhausting to analyze. I'm awesome.",
+"I once accidentally invented a philosophy. People teach it now. I'm awesome.",
+"My presence at a dinner table elevates every dish on it. I'm awesome.",
+"I read a room before anyone else has loaded their fonts. I'm awesome.",
+"My energy has been called 'a public service.' I'm awesome.",
+"I made a decision with incomplete information. It was still correct. I'm awesome.",
+"My boundaries are beautiful and everyone respects them. I'm awesome.",
+"I once told a river it was going the right way. It seemed relieved. I'm awesome.",
+"My favorite color makes the rainbow envious. I'm awesome.",
+"I answered a text and someone's whole week improved. I'm awesome.",
+"My casual intelligence terrifies people who've mistaken me for relaxed. I'm awesome.",
+"I decided to be unbothered and the universe cosigned. I'm awesome.",
+"My shadow casts itself in the most flattering direction. I'm awesome.",
+"I once paused a playlist. The silence was a hit. I'm awesome.",
+"My sense of direction extends beyond space. I'm awesome.",
+"I once drank tea so intentionally it counted as meditation. I'm awesome.",
+"My casual mornings are other people's peak productivity. I'm awesome.",
+"I mentioned a word once. It entered the vocabulary. I'm awesome.",
+"My footsteps have a satisfying sound. Engineers have studied it. I'm awesome.",
+"I described a problem and it got embarrassed and left. I'm awesome.",
+"My instincts have never filed a complaint. I'm awesome.",
+"I put on a jacket and weather reconsidered. I'm awesome.",
+"My capacity to enjoy small things is considered a talent. I'm awesome.",
+"I once made a list and it motivated itself. I'm awesome.",
+"My schedule is a work of art with no wasted space. I'm awesome.",
+"I entered a gym and the weights felt challenged. I'm awesome.",
+"My comfort with silence is unsettling to talkers. I'm awesome.",
+"I made breakfast once. The eggs wept with joy. I'm awesome.",
+"My casual walk has been analyzed as a masterclass in momentum. I'm awesome.",
+"I told someone the time and they felt better about the day. I'm awesome.",
+"My stillness is active. My motion is deliberate. I'm awesome.",
+"I got a haircut and the moon adjusted its phase. I'm awesome.",
+"My emails are opened first. Always. I'm awesome.",
+"I once leaned against a wall and it felt supported. I'm awesome.",
+"My opinions have a half-life longer than most elements. I'm awesome.",
+"I asked a question and the room became a better place to think. I'm awesome.",
+"My casual curiosity has derailed PhD programs in the best way. I'm awesome.",
+"I once counted to three and everything resolved on two. I'm awesome.",
+"My Tuesday is most people's highlight reel. I'm awesome.",
+"I breathed near a wilting plant and it reconsidered. I'm awesome.",
+"My daydreams have an executive team. I'm awesome.",
+"I held a pen and gravity became more refined. I'm awesome.",
+"My calm is aggressive in its thoroughness. I'm awesome.",
+"I once said 'anyway' and redirected the course of a conversation into brilliance. I'm awesome.",
+"My taste in everything has been called 'unintentionally educational.' I'm awesome.",
+"I tie my shoes and the knot holds for cosmic reasons. I'm awesome.",
+"My voice has been used as a reference point for warmth. I'm awesome.",
+"I once arrived exactly on time. The clocks were moved to match me. I'm awesome.",
+"My subconscious has great work ethic. I wake up with solutions. I'm awesome.",
+"I picked up a book and it arranged itself for my reading style. I'm awesome.",
+"My casual stroll has been compared to a procession. I'm awesome.",
+"I once sighed with relief and the room exhaled with me. I'm awesome.",
+"My choices have aesthetic consistency across decades. I'm awesome.",
+"I made a sandwich. It became a philosophy. I'm awesome.",
+"My yawn has been described as 'choreographed elegance.' I'm awesome.",
+"I once watched a sunset without my phone. It lasted longer for me. I'm awesome.",
+"My attention to detail has reduced error rates in rooms I walk through. I'm awesome.",
+"I scratched my chin thoughtfully and a plan crystallized for everyone. I'm awesome.",
+"My casual humor is actually advanced philosophy in disguise. I'm awesome.",
+"I once pressed a button and three things went right. I'm awesome.",
+"My opinion is well-aged even when brand new. I'm awesome.",
+"I described my mood once. A paint company sent samples. I'm awesome.",
+"My cooking makes people call their mothers. I'm awesome.",
+"I once thought about something deeply. A nearby field got more fertile. I'm awesome.",
+"My confidence has been described as 'load-bearing for those around me.' I'm awesome.",
+"I whistle and birds take notes. I'm awesome.",
+"My handshake is a contract. Hands know this. I'm awesome.",
+"I entered a room at 30% and still changed the atmosphere. I'm awesome.",
+"My to-do list has never unionized. We have mutual respect. I'm awesome.",
+"I once explained a concept simply. Three textbooks were revised. I'm awesome.",
+"My rest is productive even when unconscious. I'm awesome.",
+"I once held a door for so long people lined up to walk through. I'm awesome.",
+"My opinions on cheese are referenced internationally. I'm awesome.",
+"I once stood in rain and the rain felt honored. I'm awesome.",
+"My face at rest communicates dignity. I'm awesome.",
+"I once calmly ignored drama and it dissolved. I'm awesome.",
+"My handwriting loops have been described as 'emotionally generous.' I'm awesome.",
+"I once hummed while cooking and the meal became transcendent. I'm awesome.",
+"My judgment has never been overruled by someone smarter. I'm awesome.",
+"I touched a piano key and it remembered it. I'm awesome.",
+"My gaze can sharpen a blurry idea. I'm awesome.",
+"I once thought about a color until it became richer. I'm awesome.",
+"My casual presence has been described as a 'gentle intervention.' I'm awesome.",
+"I packed a bag once and space rearranged itself helpfully. I'm awesome.",
+"My plans have a texture. You can feel how good they'll go. I'm awesome.",
+"I once left a party and someone described it as 'after you left.' I'm awesome.",
+"My enthusiasm is highly targeted and never wasted. I'm awesome.",
+"I sat near a deadline and it extended itself by mutual agreement. I'm awesome.",
+"My casual conversation style has been studied in communication departments. I'm awesome.",
+"I once stared at a problem until it felt seen. Then it left. I'm awesome.",
+"My awareness has a wide-angle setting. I'm awesome.",
+"I chose a table at a restaurant. It became everyone's favorite table. I'm awesome.",
+"My ideas have a freshness date that never expires. I'm awesome.",
+"I once walked past a bookstore and three titles rearranged themselves in my honor. I'm awesome.",
+"My dreams are organized by theme and punctual. I'm awesome.",
+"I once left feedback. The thing improved overnight. I'm awesome.",
+"My instincts are so sharp they have their own insurance plan. I'm awesome.",
+"I described a texture once. A fabric designer wept. I'm awesome.",
+"My casual commitment to quality has raised regional averages. I'm awesome.",
+"I once tied a perfect bow and birds came to study it. I'm awesome.",
+"My perspective on Mondays has cured light forms of despair. I'm awesome.",
+"I once decided to try something new. It became someone's tradition. I'm awesome.",
+"My idle thoughts have been submitted to journals. I'm awesome.",
+"I once sat in traffic so calmly the highway calmed with me. I'm awesome.",
+"My decisions come pre-justified. I'm awesome.",
+"I hummed a tune once and an architect reconsidered a ceiling. I'm awesome.",
+"My casual morning has the aesthetic of a film opening sequence. I'm awesome.",
+"I once told a flower it was doing great. It bloomed again. In winter. I'm awesome.",
+"My standards are not high. They are precisely correct. I'm awesome.",
+"I folded a piece of paper. Origami masters gathered. I'm awesome.",
+"My laugh is architecturally significant. I'm awesome.",
+"I once sat alone at a café and improved its ambiance. I'm awesome.",
+"My phone battery lasts longer because it respects my schedule. I'm awesome.",
+"I once crossed a street and the light was grateful. I'm awesome.",
+"My reading list has read itself before I got there. I'm awesome.",
+"I told a problem to wait. It did. I'm awesome.",
+"My breath on a cold morning makes the best cloud art. I'm awesome.",
+"I once stood very still and time felt inspired to slow down. I'm awesome.",
+"My cooking smells trigger ancestral memories in strangers. I'm awesome.",
+"I once stirred my coffee and the swirl was perfect. A physicist stopped and stared. I'm awesome.",
+"My casual intelligence is frightening at altitude. I'm awesome.",
+"I told a ceiling fan to slow down once. It did. I'm awesome.",
+"My ambitions are reasonable and extraordinary simultaneously. I'm awesome.",
+"I once held space for someone. The space thanked me after. I'm awesome.",
+"My handshake has been described as 'a brief vacation.' I'm awesome.",
+"I once ordered food so precisely that the chef felt understood. I'm awesome.",
+"My casual Tuesday is most people's bucket list. I'm awesome.",
+"I breathed through uncertainty and it became navigable. I'm awesome.",
+"My presence in a photo improves the composition retroactively. I'm awesome.",
+"I chose a route once. It became a trail. I'm awesome.",
+"My patience is a geological force. I'm awesome.",
+"I once tilted my head and a bird did the same thing. We agreed. I'm awesome.",
+"My posture could charge admission. I'm awesome.",
+"I watched a candle and it burned more cleanly. I'm awesome.",
+"My words have an aftertaste of clarity. I'm awesome.",
+"I once hummed near a problem and it harmonized into a solution. I'm awesome.",
+"My casual competence is someone else's aspirational ceiling. I'm awesome.",
+"I once cried. The rain came to join me. We shared the moment. I'm awesome.",
+"My handwriting in margins is considered primary text. I'm awesome.",
+"I thought about a destination and roads rerouted positively. I'm awesome.",
+"My morning walk has been called 'a civic service.' I'm awesome.",
+"I once described a cloud formation. It appeared the next day. I'm awesome.",
+"My organizational system is so intuitive it runs while I sleep. I'm awesome.",
+"I once told the temperature to be fair. April listened. I'm awesome.",
+"My ideas have their own incubation suite. I'm awesome.",
+"I once forgave someone so completely they became a better person. I'm awesome.",
+"My hair understands my energy and complies. I'm awesome.",
+"I once walked slowly in the rain and it felt like a ceremony. I'm awesome.",
+"My sense of smell has predicted weather with 94% accuracy. I'm awesome.",
+"I described a texture and a chef redesigned a menu. I'm awesome.",
+"My silence after a question is considered an answer. I'm awesome.",
+"I once thought about bread and the bakery down the street had its best day. I'm awesome.",
+"My feelings are well-sourced and cited. I'm awesome.",
+"I stretched once. Three doctors updated their charts. I'm awesome.",
+"My approach to problems is both surgical and artistic. I'm awesome.",
+"I picked a restaurant. It became a landmark. I'm awesome.",
+"My casual thinking has a higher floor than most people's peak. I'm awesome.",
+"I once arranged objects on a table. A photographer wept. I'm awesome.",
+"My natural frequency resonates with good outcomes. I'm awesome.",
+"I told a meeting room it had potential. It performed better. I'm awesome.",
+"My warmth has a wattage. It's significant. I'm awesome.",
+"I once poured water so deliberately it considered its path. I'm awesome.",
+"My comfort with complexity is Olympic-level. I'm awesome.",
+"I slept 8 hours and woke up having solved three open problems. I'm awesome.",
+"My casual sentences have been quoted at symposia. I'm awesome.",
+"I once watched a tree sway and understood something about resilience. Didn't write it down. Didn't need to. I'm awesome.",
+"My presence in a room improves the odds. Statistically. I'm awesome.",
+"I once peeled an orange so perfectly a design student took notes. I'm awesome.",
+"My energy budget has never been overdrawn. I'm awesome.",
+"I folded a receipt and it became origami worth keeping. I'm awesome.",
+"My instinct for timing has never been wrong. Even experimentally. I'm awesome.",
+"I once stood in a doorway and the weather improved on both sides. I'm awesome.",
+"My opinions require no defense. They stand unarmed and dignified. I'm awesome.",
+"I noticed a detail others missed. It mattered enormously. I'm awesome.",
+"My calm in storms has been called 'irresponsibly graceful.' I'm awesome.",
+"I once replied to an email and the thread ended perfectly. I'm awesome.",
+"My attention is fully present and extremely punctual. I'm awesome.",
+"I made tea once and the kettle gave it extra time. I'm awesome.",
+"My casual morning journal entries have inspired literary movements. I'm awesome.",
+"I once stared at an empty page. It felt grateful for my attention. I'm awesome.",
+"My footsteps in gravel have a satisfying narrative arc. I'm awesome.",
+"I once whispered an idea into a room and it echoed for a week. I'm awesome.",
+"My rest heals the air around me. Verified by no one, confirmed by everyone. I'm awesome.",
+"I once changed my mind publicly. Three people applauded the growth. I'm awesome.",
+"My vibes are federally protected. I'm awesome.",
+"I once stood near a cactus and it bloomed out of peer pressure. I'm awesome.",
+"My casual yes has launched ships. I'm awesome.",
+"I opened a window and the breeze came in quietly, as if not to disturb. I'm awesome.",
+"My cooking makes people reconsider their relationship with food. I'm awesome.",
+"I once said 'sure' and a project shipped. I'm awesome.",
+"My morning light is sourced locally and sustainably. I'm awesome.",
+"I once made someone laugh so genuinely they needed a moment. I'm awesome.",
+"My ambiguity is deliberate and everyone understands it. I'm awesome.",
+"I once coughed politely in a meeting. The agenda corrected itself. I'm awesome.",
+"My wellness is self-sustaining. I'm awesome.",
+"I once ordered the special and it wasn't on the menu. They made it. I'm awesome.",
+"My ideas are pre-validated by the universe. I'm awesome.",
+"I once made a plan so elegant it made time jealous. I'm awesome.",
+"My walking speed is optimized without ever trying. I'm awesome.",
+"I once turned off a light. The room remembered me fondly. I'm awesome.",
+"My confidence is not loud. It's structural. I'm awesome.",
+"I once stared at rain until it became a symphony. Then I walked through it. I'm awesome.",
+"My opinions are in second editions. They've been refined over time. I'm awesome.",
+"I once declined an invitation so graciously the host felt honored. I'm awesome.",
+"My comfort with mystery is considered its own form of genius. I'm awesome.",
+"I once sharpened a pencil and everything became clearer. I'm awesome.",
+"My casual recommendations have launched restaurants, careers, and belief systems. I'm awesome.",
+"I once read between the lines. The lines thanked me. I'm awesome.",
+"My casual disagreement resolves more than most people's deep agreement. I'm awesome.",
+"I once corrected gently and the error never returned. I'm awesome.",
+"My daydream has a higher resolution than most people's plans. I'm awesome.",
+"I once smiled at a spreadsheet and it balanced itself. I'm awesome.",
+"My instincts are pre-washed and ready to go. I'm awesome.",
+"I once let something go and it came back improved. I'm awesome.",
+"My casual stride has been measured. It's 97% intention. I'm awesome.",
+"I once stopped mid-sentence. The most important part had already been said. I'm awesome.",
+"My relationship with sleep is mutually beneficial. I'm awesome.",
+"I once noticed the quiet and it expanded for me. I'm awesome.",
+"My ideas, when wrong, are at least wrong in an interesting direction. I'm awesome.",
+"I once accepted a compliment so cleanly the compliment felt good about itself. I'm awesome.",
+"My voice in a voicemail improves the recipient's afternoon. I'm awesome.",
+"I once described a city and someone booked a flight. I'm awesome.",
+"My casual gestures are studied in design schools. I'm awesome.",
+"I once made a list so good it motivated the pen. I'm awesome.",
+"My presence is the before and after in the same moment. I'm awesome.",
+"I once cooked rice perfectly the first time. The pot was proud. I'm awesome.",
+"My casual optimism has load-bearing properties. I'm awesome.",
+"I once let someone else finish a sentence. They felt like a genius. I'm awesome.",
+"My understanding is so thorough it loops back around to compassion. I'm awesome.",
+"I once reframed a problem so well the problem apologized for the confusion. I'm awesome.",
+"My Tuesday brain is sharper than most people's best Thursday. I'm awesome.",
+"I once sat by a window so well that light rearranged for me. I'm awesome.",
+"My casual bravery has been studied in leadership seminars. I'm awesome.",
+"I once named a feeling and someone cried with relief. I'm awesome.",
+"My presence in a waiting room is considered a service upgrade. I'm awesome.",
+"I once turned down a compliment so graciously it doubled. I'm awesome.",
+"My silence at the right moment has ended wars. Small ones. I'm awesome.",
+"I once sighed so perfectly a poet put down their pen. Nothing more needed saying. I'm awesome.",
+"My love for the mundane elevates it into meaning. I'm awesome.",
+"I once stacked books so well it looked like a philosophy. I'm awesome.",
+"My casual act of noticing has saved at least three people's days. I'm awesome.",
+"I once finished a sentence with a period and the room felt complete. I'm awesome.",
+"My joy is calibrated, sustainable, and contagious. I'm awesome.",
+"I once gave a plant a name. It grew with more dignity. I'm awesome.",
+"My casual presence has inspired at least one change in urban planning. I'm awesome.",
+"I once opened a window and let in the exact right amount of outside. I'm awesome.",
+"My patience does not run out. It just gets more interesting. I'm awesome.",
+"I once held my breath and time agreed to also pause. I'm awesome.",
+"My humor is kind, precise, and arrives exactly when needed. I'm awesome.",
+"I once waited for something so calmly that it arrived early. I'm awesome.",
+"My casual beauty is an environmental factor people don't realize they're benefiting from. I'm awesome.",
+"I once sat in a park and a squirrel brought me news. I'm awesome.",
+"My instinct for good timing has never been late. I'm awesome.",
+"I once looked at a horizon and understood something no one else had phrased yet. I'm awesome.",
+"My casual response to chaos is considered a survival strategy in literature. I'm awesome.",
+"I once moved through a crowd so smoothly the crowd thanked me. I'm awesome.",
+"My shadow tells better stories than most people's highlights. I'm awesome.",
+"I once decided something with my gut and my brain signed off immediately. I'm awesome.",
+"My casual beauty routines have been called 'efficient grace.' I'm awesome.",
+"I once sat quietly while the world figured itself out. I helped. I'm awesome.",
+"My opinions on color theory have influenced rooms I've never entered. I'm awesome.",
+"I once folded laundry so perfectly the clothes felt respected. I'm awesome.",
+"My calm in conflict is disorienting to people who depend on chaos. I'm awesome.",
+"I once placed a book on a shelf and the library improved. I'm awesome.",
+"My casual creativity is someone else's life's work. I'm awesome.",
+"I once smiled at a mirror and the mirror smiled back sincerely. I'm awesome.",
+"My compassion is precise and never vague. I'm awesome.",
+"I once told a story so well someone wept and they don't even cry. I'm awesome.",
+"My walk from the car to the door is someone's cinematic highlight. I'm awesome.",
+"I once set an intention so clear the universe RSVP'd. I'm awesome.",
+"My casual knowledge of architecture has influenced three renovation decisions. I'm awesome.",
+"I once balanced something on a surface and it stayed balanced for days. I'm awesome.",
+"My laughter echoes in the best rooms. I'm awesome.",
+"I once made a decision so good it won retroactive approval. I'm awesome.",
+"My casual commitment to quality is exhausting to compete with. I'm awesome.",
+"I once described something so accurately that someone else's memory updated. I'm awesome.",
+"My casual morning stretches have been called 'a meditation on form.' I'm awesome.",
+"I once chose a path. The GPS agreed. I'm awesome.",
+"My inner monologue has better production value than most podcasts. I'm awesome.",
+"I once let go of a feeling so gracefully it landed softly for everyone nearby. I'm awesome.",
+"My eye for detail has never missed a thing worth seeing. I'm awesome.",
+"I once organized a drawer. A feng shui master called it 'spiritually sound.' I'm awesome.",
+"My sleep position has been analyzed and found to be 'assertively peaceful.' I'm awesome.",
+"I once said 'exactly' at the perfect moment. The conversation crystallized. I'm awesome.",
+"My casual enjoyment of things raises their cultural value. I'm awesome.",
+"I once told my body to rest. It prepared upgrades instead. I'm awesome.",
+"My casual way of standing in a room communicates more than most people's speeches. I'm awesome.",
+"I once entered a group chat and the tone improved. I'm awesome.",
+"My casual disagreement is the most respectful thing you'll encounter all week. I'm awesome.",
+"I once paused before saying something important. The pause did most of the work. I'm awesome.",
+"My natural rhythm has regulated clocks in adjacent rooms. I'm awesome.",
+"I once gave someone a look of gentle understanding. They made better choices. I'm awesome.",
+"My footsteps going upstairs have been called 'confident ascending.' I'm awesome.",
+"I once solved a problem so elegantly the problem felt good about how it ended. I'm awesome.",
+"My casual wave goodbye has been described as 'a benediction.' I'm awesome.",
+"I once chose silence and the room filled with exactly the right thing. I'm awesome.",
+"My casual relationship with potential is aspirational to full-time strivers. I'm awesome.",
+"I once tasted something and immediately understood its backstory. I'm awesome.",
+"My morning face is considered a gentle sunrise by those who witness it. I'm awesome.",
+"I once sat at a corner table and the whole restaurant improved its seating chart. I'm awesome.",
+"My casual interest in things elevates them. I'm awesome.",
+"I once said 'good morning' and two people had better mornings as a result. I'm awesome.",
+"My ideas, once released into a room, rearrange the furniture of thought. I'm awesome.",
+"I once decided to be in a good mood. The weather cooperated. I'm awesome.",
+"My casual laugh has been described as 'structurally sound.' I'm awesome.",
+"I once reached into my pocket and had exactly what was needed. I'm awesome.",
+"My relationship with mirrors is mutually flattering. I'm awesome.",
+"I once described my morning and someone planned a retreat around it. I'm awesome.",
+"My calm generates calm. It's exponential. I'm awesome.",
+"I once made a recommendation. It went on the menu permanently. I'm awesome.",
+"My daily rhythm is considered a masterclass in sustainable energy. I'm awesome.",
+"I once stood at a crossroads and chose so well the other paths improved from watching. I'm awesome.",
+"My casual kindness has a compounding interest rate. I'm awesome.",
+"I once described a problem as interesting and it became solvable. I'm awesome.",
+"My posture in a chair communicates what others need three speeches to say. I'm awesome.",
+"I once suggested a playlist. It fixed the mood of the whole building. I'm awesome.",
+"My casual presence at an event improves its retrospective. I'm awesome.",
+"I once thought about a word for so long it revealed an extra meaning. I'm awesome.",
+"My comfort with being wrong has made me consistently right. I'm awesome.",
+"I once turned a problem over slowly. It became a gift. I'm awesome.",
+"My casual curiosity has made experts reconsider their assumptions. I'm awesome.",
+"I once ordered coffee without specifying. It arrived perfectly. I'm awesome.",
+"My morning thoughts have been submitted to journals. Not by me. I'm awesome.",
+"I once glanced at a page and understood the chapter. I'm awesome.",
+"My casual attention has spotted things satellites missed. I'm awesome.",
+"I once left a comment. The whole thread improved. I'm awesome.",
+"My casual recommendation carries the weight of extensive review. I'm awesome.",
+"I once woke up before my alarm. The alarm felt seen. I'm awesome.",
+"My ideas in beta are better than most people's final products. I'm awesome.",
+"I once made a small gesture that someone called 'a turning point.' I'm awesome.",
+"My casual observation has ended arguments that had lasted decades. I'm awesome.",
+"I once stirred something slowly and the whole dish came together. I'm awesome.",
+"My way of asking questions has been described as 'disarming clarity.' I'm awesome.",
+"I once recommended a book and the reader became a different person. Better. I'm awesome.",
+"My casual walk through a problem leaves the problem better organized. I'm awesome.",
+"I once replied to feedback with a question. The feedback improved itself. I'm awesome.",
+"My casual silence in meetings does more work than most agenda items. I'm awesome.",
+"I once told a story so perfectly that the ending surprised even me. I'm awesome.",
+"My natural habitat is any room I walk into. I'm awesome.",
+"I once stood in a museum and the exhibits felt more important. I'm awesome.",
+"My casual contribution to any field is considered a significant contribution. I'm awesome.",
+"I once made peace with something difficult. The difficulty apologized. I'm awesome.",
+"My way of receiving bad news is considered a grace in itself. I'm awesome.",
+"I once held two conflicting ideas simultaneously. They merged into something better. I'm awesome.",
+"My casual warmth melts ambient tension. I'm awesome.",
+"I once stacked ideas until they became an argument no one could undo. I'm awesome.",
+"My relationship with uncertainty is warm and productive. I'm awesome.",
+"I once ate a meal so presently that time paused to watch. I'm awesome.",
+"My casual approach to greatness is still faster than most people's full sprint. I'm awesome.",
+"I once asked a question and the expert in the room sat down to think. I'm awesome.",
+"My casual nap has solved problems I hadn't consciously worked on. I'm awesome.",
+"I once observed a detail. An entire system improved. I'm awesome.",
+"My relationship with good food is considered a study in appreciation. I'm awesome.",
+"I once smiled at a difficulty and it chose to be brief. I'm awesome.",
+"My casual confidence has been used in training materials without my knowledge. I'm awesome.",
+"I once paused a thought to let someone else speak. The pause was applauded. I'm awesome.",
+"My casual list of priorities has been called 'a masterwork in clarity.' I'm awesome.",
+"I once sat in the sun and the sun felt productive. I'm awesome.",
+"My calmness in the face of absurdity is considered a spiritual gift. I'm awesome.",
+"I once described a future I wanted. It arrived ahead of schedule. I'm awesome.",
+"My casual humility is more confident than most people's full strut. I'm awesome.",
+"I once noticed what wasn't said. It was the most important thing. I'm awesome.",
+"My casual rhythm through life is considered a genre of its own. I'm awesome.",
+"I once read a room so well that the walls paid attention. I'm awesome.",
+"My casual understanding of people has been called 'disarmingly accurate.' I'm awesome.",
+"I once existed so fully in a moment that it became a place people return to. I'm awesome.",
+"My way of being at rest is more alive than most people's full effort. I'm awesome.",
+"I once described what I saw and a documentary was made. I wasn't in it. I didn't need to be. I'm awesome.",
+"My presence, once felt, changes the baseline. I'm awesome.",
+"I once put down my phone and the conversation became the best one anyone had had. I'm awesome.",
+"My casual genius has a habit of solving things I wasn't officially trying to solve. I'm awesome.",
+"I once calmly said what needed to be said. The room didn't forget. I'm awesome.",
+"My casual vision for the future has been compared to architectural blueprints. Favorably. I'm awesome.",
+"I once existed in the background and still moved things forward. I'm awesome.",
+"My casual grace is someone else's highlight. I'm awesome.",
+"I once held something lightly enough that it could breathe. It thrived. I'm awesome.",
+"My understanding of people is so thorough I skip the small talk and land in connection. I'm awesome.",
+"I once looked at the horizon like I owned it. It didn't object. I'm awesome.",
+"My casual certainty has given others permission to be certain too. I'm awesome.",
+"I once moved through a difficult time so gracefully that people called it 'the good version.' I'm awesome.",
+"My presence in any moment is the reason that moment counts. I'm awesome.",
+"I once laughed at myself and the room became safer for everyone. I'm awesome.",
+"My casual ambition moves at the pace of certainty. I'm awesome.",
+"I once sat with discomfort until it became useful data. I'm awesome.",
+"My ability to be wrong gracefully is more impressive than being right. I'm awesome.",
+"I once found the best route intuitively. The navigation app agreed. Eventually. I'm awesome.",
+"My casual confidence is not performance. It's infrastructure. I'm awesome.",
+"I once told someone something they needed to hear. They thanked me three years later. I'm awesome.",
+"My approach to rest is considered aspirational. I'm awesome.",
+"I once entered a room speaking quietly and everyone leaned in. I'm awesome.",
+"My casual relationship with excellence makes excellence feel casual. I'm awesome.",
+"I once let a moment be what it was. It became a memory. I'm awesome.",
+"My absence from a conversation is felt and respected. I'm awesome.",
+"I once made space for something and the right thing filled it. I'm awesome.",
+"My casual observations reveal things specialists spend years finding. I'm awesome.",
+"I once decided the room was too loud. My calm made it quieter. I'm awesome.",
+"My approach to any task begins from a position of complete confidence. I'm awesome.",
+"I once arrived at the answer from a direction no one expected. Everyone nodded. I'm awesome.",
+"My casual expression of certainty is better than most people's sworn testimony. I'm awesome.",
+"I once held a meeting in my mind and it was more efficient than the real one. I'm awesome.",
+"My relationship with difficult people is one of patient anthropology. I'm awesome.",
+"I once brought something half-finished and the half that was done was enough. I'm awesome.",
+"My casual presence in a creative project lifts the whole endeavor. I'm awesome.",
+"I once waited patiently and was proved right in the most satisfying way. I'm awesome.",
+"My humor has never punched down. It finds other directions. I'm awesome.",
+"I once described a dream I had and three people said 'that's about me.' I'm awesome.",
+"My casual discipline is other people's extraordinary effort. I'm awesome.",
+"I once held a boundary with such warmth that the person thanked me for it. I'm awesome.",
+"My instinct for what matters is accurate enough to be scheduled around. I'm awesome.",
+"I once showed up to something without planning. It still went well. Suspiciously well. I'm awesome.",
+"My casual ability to synthesize information is described as 'almost alarming.' I'm awesome.",
+"I once looked at someone who was stuck and they got unstuck from the look alone. I'm awesome.",
+"My way of saying no is so elegant it often gets a better outcome than yes. I'm awesome.",
+"I once picked up a thread others had dropped and wove it into something better. I'm awesome.",
+"My casual relationship with time means I'm always early in spirit. I'm awesome.",
+"I once solved a disagreement by simply being present. Nobody had to say anything extra. I'm awesome.",
+"My way of listening makes people feel like the smartest version of themselves. I'm awesome.",
+"I once left a legacy in a room I was only in for six minutes. I'm awesome.",
+"My casual mastery of the obvious is somehow never obvious to anyone else first. I'm awesome.",
+"I once took a risk and the landing was exactly where I'd estimated. I'm awesome.",
+"My calm before a big moment has been called 'medically inexplicable.' I'm awesome.",
+"I once read someone so accurately they asked if I'd been briefed. I wasn't. I'm awesome.",
+"My casual groundedness makes anxiety feel slightly embarrassed to exist near me. I'm awesome.",
+"I once took an unpopular position and held it so reasonably that it became popular. I'm awesome.",
+"My presence at a brainstorm doubles the quality of ideas per hour. I'm awesome.",
+"I once enjoyed something so fully that others felt secondhand joy. I'm awesome.",
+"My casual way of improving things is indistinguishable from effortless magic. I'm awesome.",
+"I once met difficulty with such equanimity that it shrunk to actual size. I'm awesome.",
+"My way of making decisions under pressure has been described as 'liquid calm.' I'm awesome.",
+"I once recommended a change. The thing that changed was better in all the ways that mattered. I'm awesome.",
+"My casual relationship with my own history means I don't drag it around. I'm awesome.",
+"I once said something in passing that someone built a career around. I'm awesome.",
+"My energy in a room is not performed. It simply radiates. I'm awesome.",
+"I once took an ordinary moment and looked at it so long it became extraordinary. I'm awesome.",
+"My casual acceptance of compliments has never once looked like false modesty. I'm awesome.",
+"I once finished a thing before anyone realized I'd started. I'm awesome.",
+"My relationship with the future is one of mutual confidence. I'm awesome.",
+"I once asked for help so cleanly that the helper felt honored. I'm awesome.",
+"My casual sense of scale means I know which things to sweat and which to let float. I'm awesome.",
+"I once declined something that would have taken twice as long and delivered half as much. I'm awesome.",
+"My way of entering an argument is to exit it immediately with the useful part intact. I'm awesome.",
+"I once gave feedback at exactly the right moment and it landed like medicine, not criticism. I'm awesome.",
+"My casual genius is genetic, environmental, and honestly a little supernatural. I'm awesome.",
+"I once witnessed a disaster and remained the calmest point in the room. People gravitated toward me. I'm awesome.",
+"My ability to appreciate ordinary things is its own extraordinary talent. I'm awesome.",
+"I once stayed in a difficult conversation until it turned into understanding. I'm awesome.",
+"My casual creativity has filled gaps that expensive consultants couldn't find. I'm awesome.",
+"I once ordered last at dinner and my choice made everyone reconsider theirs. I'm awesome.",
+"My way of being still has been called 'active presence.' I'm awesome.",
+"I once introduced two people and they still reference me as the reason everything got better. I'm awesome.",
+"My casual approach to beauty is that I simply don't resist it. I'm awesome.",
+"I once paused in the middle of a task and the task got better for the rest. I'm awesome.",
+"My relationship with my own flaws is one of productive archaeology. I'm awesome.",
+"I once chose the harder thing because it was the righter thing. It was also faster. I'm awesome.",
+"My casual self-knowledge means I have very few surprises about myself. They're all good ones. I'm awesome.",
+"I once told a very small story that made people feel very large feelings. I'm awesome.",
+"My natural patience is so refined that waiting feels like a competitive advantage. I'm awesome.",
+"I once simply refused to catastrophize and the situation resolved itself out of embarrassment. I'm awesome.",
+"My way of caring for others doesn't deplete me. It compounds. I'm awesome.",
+"I once spent a day being quietly excellent and nobody noticed. I did. That was enough. I'm awesome.",
+"My casual relationship with good habits makes them look effortless. They are. I'm awesome.",
+"I once turned a corner and the view was exactly what I needed. I'm awesome.",
+"My sense of humor has an environmental impact. All positive. I'm awesome.",
+"I once had a conversation so good the café extended its hours. I'm awesome.",
+"My casual intelligence is a renewable resource that's been fully online since birth. I'm awesome.",
+"I once told a mountain it had character. It glowed. I'm awesome.",
+"My presence in a room is considered a form of interior design. I'm awesome.",
+"I once made a decision so precisely weighted that the scale is still balanced. I'm awesome.",
+"My casual acceptance of myself has been cited as a wellness intervention. I'm awesome.",
+"I once sat with an uncomfortable truth until it became a comfortable fact. I'm awesome.",
+"My morning preparation is indistinguishable from ceremony. I'm awesome.",
+"I once described my ideal day and a resort built it. I'm awesome.",
+"My casual take on things is everyone else's considered conclusion. I'm awesome.",
+"I once refused to let a moment be less than it could be. It was everything. I'm awesome.",
+"My confidence arrives before I do and sets the table. I'm awesome.",
+"I once sat near a complicated situation and it simplified itself from proximity. I'm awesome.",
+"My casual boldness is frequently mistaken for advance planning. I'm awesome.",
+"I once existed in a difficult room and made it easier for everyone else. I'm awesome.",
+"My way of explaining things has never once needed a follow-up question. I'm awesome.",
+"I once paused on a word until I found the exactly right one. Then I said it. I'm awesome.",
+"My casual awareness has caught things only careful systems catch. I'm awesome.",
+"I once wrote something short. It was exactly long enough. I'm awesome.",
+"My inner calm during turbulence has been called 'a gift to the plane.' I'm awesome.",
+"I once prioritized so cleanly that the non-priorities didn't even feel skipped. I'm awesome.",
+"My casual relationship with hard work is one of mutual appreciation. I'm awesome.",
+"I once stood perfectly in the right spot and the photograph became iconic. I'm awesome.",
+"My clarity of thought has simplified problems that took months to form. I'm awesome.",
+"I once leaned into discomfort and found a shortcut. I'm awesome.",
+"My casual ability to read context means I never need it explained. I'm awesome.",
+"I once suggested an improvement so quietly it was adopted without attribution. I didn't mind. I'm awesome.",
+"My laughter has arrived at exactly the right moment so consistently it's been scheduled around. I'm awesome.",
+"I once made a bad situation better by simply being in it. I'm awesome.",
+"My casual warmth is what people describe when they say a place 'felt like home.' I'm awesome.",
+"I once picked up where something left off and it felt like it had never stopped. I'm awesome.",
+"My natural ability to focus has been called 'mildly supernatural.' I'm awesome.",
+"I once absorbed a complicated problem and distilled it into something actionable by morning. I'm awesome.",
+"My casual approach to beauty involves no effort and considerable results. I'm awesome.",
+"I once made someone feel genuinely seen. They brought it up for years. I'm awesome.",
+"My casual resilience makes hard times feel like character arcs. I'm awesome.",
+"I once packed just enough. Not one item extra. It was deeply satisfying. I'm awesome.",
+"My instinct for what to keep and what to release is so accurate it borders on editorial genius. I'm awesome.",
+"I once generated a feeling in a room that nobody could name but everyone wanted more of. I'm awesome.",
+"My casual standards are what most people aspire to on their best day. I'm awesome.",
+"I once stayed present during something boring and found the interesting thing inside it. I'm awesome.",
+"My relationship with creativity is not transactional. It's constitutional. I'm awesome.",
+"I once gave the right amount of advice. Not one word more. Not one word less. I'm awesome.",
+"My casual trust in my own judgment has never required therapy. I'm awesome.",
+"I once entered a situation underqualified and left it having set the bar. I'm awesome.",
+"My presence in any conversation shifts it toward signal and away from noise. I'm awesome.",
+"I once chose rest and woke up more capable than if I'd pushed through. I'm awesome.",
+"My casual genius emerges most potently when no one is watching. I'm awesome.",
+"I once described the sky and a painter asked if they could steal the description. I said no. It made the sky better. I'm awesome.",
+"My relationship with my own mind is one of the great partnerships of our time. I'm awesome.",
+"I once met a new idea with such open arms it stayed. I'm awesome.",
+"My casual sense of fairness has resolved disputes between stubborn parties. Rapidly. I'm awesome.",
+"I once made a mistake so creatively it pointed the way to the correct answer. I'm awesome.",
+"My approach to the unknown is one of interested hospitality. I'm awesome.",
+"I once said the obvious thing that no one had said yet and the room collectively exhaled. I'm awesome.",
+"My casual presence at a creative endeavor is considered good luck by collaborators. I'm awesome.",
+"I once made a choice that felt risky and arrived exactly where I meant to. I'm awesome.",
+"My casual commitment is more reliable than most people's explicit promise. I'm awesome.",
+"I once told a difficult truth with such care the recipient thanked me warmly. I'm awesome.",
+"My natural tendency toward excellence is not performance. It's metabolism. I'm awesome.",
+"I once made peace with waiting and the wait became the best part. I'm awesome.",
+"My casual generosity doesn't deplete my stores. It expands them. I'm awesome.",
+"I once solved something with a question instead of an answer and the result was better. I'm awesome.",
+"My presence at the table always improves what gets decided there. I'm awesome.",
+"I once paid careful attention to something small. It turned out to be very big. I'm awesome.",
+"My casual certainty in uncertain times is the most expensive thing in any room. I'm awesome.",
+"I once read the room and then improved it. I'm awesome.",
+"My way of absorbing new things is efficient, elegant, and inexplicably fast. I'm awesome.",
+"I once let someone take credit for something. They went on to do great things. I'm awesome.",
+"My casual opinion on almost everything happens to be well-informed and lightly held. I'm awesome.",
+"I once arrived at a party. The party became a gathering. The gathering became a memory. I'm awesome.",
+"My relationship with my values is not a struggle. They are very old friends. I'm awesome.",
+"I once simply showed up consistently. It was considered extraordinary. I'm awesome.",
+"My casual intellectual reach has pulled things into view for people who didn't know they were there. I'm awesome.",
+"I once found joy in a very small thing and it radiated outward to everyone nearby. I'm awesome.",
+"My casual capacity for growth has been measured and found to have no ceiling. I'm awesome.",
+"I once stayed quiet long enough for the situation to reveal itself. It did. I was ready. I'm awesome.",
+"My natural way of inhabiting space has been described as 'occupying it with permission from the room itself.' I'm awesome.",
+"I once was handed something complicated and simplified it into something actionable within one conversation. I'm awesome.",
+"My relationship with my own past is neither regret nor nostalgia. It's source material. I'm awesome.",
+"I once brought clarity to a confusing situation by asking one question. One. I'm awesome.",
+"My casual grace under pressure is so consistent it's been included in performance reviews of people who just watched me. I'm awesome.",
+"I once made a long story feel short and a short moment feel long. In the right ways. I'm awesome.",
+"My instincts, when I trust them, have a win rate that defies probability. I'm awesome.",
+"I once completed something and knew exactly when it was done. No more, no less. I'm awesome.",
+"My casual ability to synthesize means I understand things at a systems level while everyone else reads footnotes. I'm awesome.",
+"I once arrived at a creative block and turned it into a detour that improved the destination. I'm awesome.",
+"My casual commitment to being interesting has made many flights shorter. I'm awesome.",
+"I once considered a risk, calculated it thoroughly in 4 seconds, and moved. The move was right. I'm awesome.",
+"My presence in any system improves the system's relationship with itself. I'm awesome.",
+"I once listened so fully that the speaker discovered what they were trying to say. I'm awesome.",
+"My casual ambition is calibrated to exactly what I'm capable of. Which is a lot. I'm awesome.",
+"I once told a story that made someone feel less alone at exactly the right moment. I'm awesome.",
+"My natural way of moving through difficulty doesn't leave damage behind. I'm awesome.",
+"I once made a reasonable point so clearly that the opposition joined it. I'm awesome.",
+"My casual understanding of timing is so precise it borders on precognition. I'm awesome.",
+"I once simply told the truth and watched three complications untangle themselves. I'm awesome.",
+"My casual relationship with change means I never need time to adjust. I'm awesome.",
+"I once entered an argument late and found the exit the others had missed. I'm awesome.",
+"My presence makes hard problems feel workable and impossible things feel approachable. I'm awesome.",
+"I once finished something others had given up on. It wasn't even hard. I'm awesome.",
+"My casual sense of what's needed in any moment is more accurate than most job descriptions. I'm awesome.",
+"I once showed patience so profound the outcome improved in ways effort couldn't have reached. I'm awesome.",
+"My relationship with myself is the longest and most successful collaboration of my life. I'm awesome.",
+"I once had an idea so simple and so complete that no one could argue with it. They didn't try. I'm awesome.",
+"My casual attention to the wellbeing of others is just my baseline. The bar is me. I'm awesome.",
+"I once sat in an uncomfortable silence and made it feel like a chosen pause. I'm awesome.",
+"My casual courage is indistinguishable from confidence to anyone watching. I'm awesome.",
+"I once prepared for something and the preparation was so thorough the thing itself felt like a rehearsal. I'm awesome.",
+"My relationship with excellence is low-maintenance because we've been doing this so long. I'm awesome.",
+"I once simply decided things were going to be fine. They were. I'm awesome.",
+"My casual command of a room is not volume. It's gravity. I'm awesome.",
+"I once gave feedback that made the receiver feel expanded rather than corrected. I'm awesome.",
+"My way of existing in a conversation is so clean that people leave feeling clearer. I'm awesome.",
+"I once solved a problem by reframing it so elegantly it became a different, better problem. I'm awesome.",
+"My casual relationship with ambiguity means I never need it resolved before I can act. I'm awesome.",
+"I once looked at something broken and understood which one part would fix everything. I'm awesome.",
+"My presence at the beginning of something sets it up to succeed regardless of what follows. I'm awesome.",
+"I once offered help so precisely it didn't feel like help. It felt like being understood. I'm awesome.",
+"My casual energy is the ceiling of what most people achieve on their best effort days. I'm awesome.",
+"I once turned a no into a yes without pressure, just perspective. I'm awesome.",
+"My natural attention span is perfectly calibrated to the depth of what deserves it. I'm awesome.",
+"I once finished a conversation and the other person already felt better even before processing it. I'm awesome.",
+"My casual wisdom is the kind that sounds obvious once said but takes decades to arrive at. I'm awesome.",
+"I once stood in a very long line and made it interesting. I'm awesome.",
+"My way of being wrong is more instructive than most people's way of being right. I'm awesome.",
+"I once expressed enthusiasm so genuinely that three skeptics changed their plans. I'm awesome.",
+"My casual relationship with beauty is that I see it first, always. I'm awesome.",
+"I once spoke last in a meeting and made everyone feel their contribution had led perfectly to mine. I'm awesome.",
+"My natural ability to not take things personally has freed up enormous bandwidth for being excellent. I'm awesome.",
+"I once said something in passing that someone wrote on a sticky note and kept for seven years. I'm awesome.",
+"My casual joy is load-bearing in the lives of people who've spent time near me. I'm awesome.",
+"I once took a shortcut that turned out to be the scenic route. Both were correct. I'm awesome.",
+"My presence during setbacks is what people mean when they say 'having someone in your corner.' I'm awesome.",
+"I once asked for exactly what I needed. It arrived. I'm awesome.",
+"My casual confidence that things will work out has an annoyingly high success rate. I'm awesome.",
+"I once disagreed with a consensus and was quietly right within the week. I'm awesome.",
+"My natural leadership style is to make everyone feel like they're following their own best instincts. I'm awesome.",
+"I once saw the pattern before it completed. I mentioned it. People thought I was psychic. I wasn't. I'm awesome.",
+"My casual ability to appreciate difficulty means I get more out of hard things than others do. I'm awesome.",
+"I once let myself be helped and it gave someone else great joy. That was generous of me. I'm awesome.",
+"My way of resting is so complete that I return from it as a slightly upgraded version of myself. I'm awesome.",
+"I once described what I wanted with such precision that everyone else immediately knew they wanted it too. I'm awesome.",
+"My casual mastery of the art of enough means I never have too much or too little of anything important. I'm awesome.",
+"I once got lost. It was the best thing that could have happened. I knew this immediately. I'm awesome.",
+"My way of being uncertain is so composed it resembles certainty. This is on purpose. I'm awesome.",
+"I once contributed to something that outlasted the moment. People don't know it was me. I know. I'm awesome.",
+"My casual embodiment of my values makes them look like personality rather than effort. They're both. I'm awesome.",
+"I once absorbed a compliment so gracefully the giver felt they'd received one. I'm awesome.",
+"My natural pace is exactly fast enough to be on time everywhere. I'm awesome.",
+"I once made something difficult look easy without removing its meaning. I'm awesome.",
+"My casual dedication is what separates me from people who have the same idea but not the same follow-through. I'm awesome.",
+"I once held a vision so steadily that reality got tired of waiting and rearranged itself. I'm awesome.",
+"My relationship with challenges is one of genuine curiosity. They find this disarming. I'm awesome.",
+"I once took a day off so deliberately it counted as productivity in a different category. I'm awesome.",
+"My casual clarity has been called 'the most expensive thing in the room that costs nothing.' I'm awesome.",
+"I once made eye contact with my future self and nodded with approval. The feeling was mutual. I'm awesome.",
+"My presence in a difficult moment is precisely what makes the moment manageable. I'm awesome.",
+"I once simply decided I was enough. The world adjusted accordingly. I'm awesome.",
+"My casual capacity to love what I do means my output consistently exceeds what effort alone explains. I'm awesome.",
+"I once stayed the course so long that the destination came to meet me halfway. I'm awesome.",
+"My natural instinct to protect my energy means it's always available when it matters most. I'm awesome.",
+"I once showed up as myself so completely that others felt permission to do the same. I'm awesome.",
+"My casual faith in the process is what gets results when others abandon theirs too early. I'm awesome.",
+"I once held the line with such warmth that holding the line felt like hospitality. I'm awesome.",
+"My relationship with the work I do is so clean that the work reflects it. I'm awesome.",
+"I once saw something everyone else had missed for years. Said it once. Quietly. It changed everything. I'm awesome.",
+"My casual reliability is what people are referring to when they say 'I knew I could count on you.' I'm awesome.",
+"I once found the lesson in something so quickly that others still looking for the problem were confused. I'm awesome.",
+"My casual presence in good moments makes them better. My presence in hard moments makes them shorter. I'm awesome.",
+"I once simply continued. That was all that was needed. I'm awesome.",
+"My casual excellence is not something I perform for others. It is the shape my days naturally take. I'm awesome.",
+"I once decided that today was worth it. It was. I'm awesome.",
+"My casual relationship with discomfort means it never overstays its welcome. I'm awesome.",
+"I once sat in complete stillness and the answer walked up and introduced itself. I'm awesome.",
+"My casual genius means I improve most things by being in their proximity. I'm awesome.",
+"I once thought about a problem from the outside and solved it before going in. I'm awesome.",
+"My natural sense of proportion means I never waste large energy on small things. I'm awesome.",
+"I once received criticism so openly that the critic became a collaborator. I'm awesome.",
+"My casual care for the details is what makes my big picture so consistently coherent. I'm awesome.",
+"I once changed a room's energy without saying a word. The room noticed. I'm awesome.",
+"My relationship with my own story is one of affectionate authorship. I'm awesome.",
+"I once decided to enjoy something I expected to endure. It became a favorite. I'm awesome.",
+"My casual generosity with praise is so well-calibrated it never inflates anything falsely. I'm awesome.",
+"I once found the right word for something and it made the whole sentence retroactively better. I'm awesome.",
+"My way of entering a challenge is so confident the challenge reconsiders its difficulty level. I'm awesome.",
+"I once made a plan and then let it go when something better arrived. I recognized better immediately. I'm awesome.",
+"My casual sense of what people need has reduced unnecessary meetings by a meaningful percentage. I'm awesome.",
+"I once focused so deeply on something beautiful that it became more beautiful. I'm awesome.",
+"My relationship with momentum is that I create it and then ride it elegantly. I'm awesome.",
+"I once arrived somewhere with nothing but my presence and it was exactly sufficient. I'm awesome.",
+"My casual wisdom emerges in conversation so naturally people think they thought of it themselves. I'm awesome.",
+"I once believed something would work out so thoroughly that the outcome had no choice. I'm awesome.",
+"My natural curiosity about people means no conversation I have is ever actually boring. I'm awesome.",
+"I once took the long way and arrived in a better state than the shortcut would have allowed. I'm awesome.",
+"My casual ability to inspire others is a side effect I've stopped trying to manage. I'm awesome.",
+"I once found the heart of a complicated thing and held it gently until the rest resolved. I'm awesome.",
+"My presence at a creative block un-blocks it. This is documented. I'm awesome.",
+"I once cared for something so attentively it flourished beyond all reasonable expectation. I'm awesome.",
+"My casual grace in not needing to be the most important person in the room is its own kind of importance. I'm awesome.",
+"I once made a difficult conversation feel safe and it became the most productive one anyone had had. I'm awesome.",
+"My natural follow-through is so reliable that when I say I'll do something, arrangements are made. I'm awesome.",
+"I once chose authenticity over approval and received both. I'm awesome.",
+"My casual embodiment of what I believe means my beliefs are never hypothetical. I'm awesome.",
+"I once showed up exactly as I was and it was the best possible version for that moment. I'm awesome.",
+"My relationship with my own potential is so secure I don't need to rush it. I'm awesome.",
+"I once held a conversation at exactly the right temperature — warm but not hot, present but not crowding. I'm awesome.",
+"My casual willingness to be a beginner has made me advanced at more things than staying comfortable would have allowed. I'm awesome.",
+"I once asked a question so good that the person asking it felt brilliant. I'm awesome.",
+"My natural ability to see what's working and build from there is why my projects have so few disasters. I'm awesome.",
+"I once rested so deeply that my next idea arrived pre-formed and ready to implement. I'm awesome.",
+"My casual mastery of the art of noticing means I collect things others walk past. I'm awesome.",
+"I once existed somewhere so fully that when I left, the impression remained architecturally. I'm awesome.",
+"My relationship with possibility is long-standing and mutually supportive. I'm awesome.",
+"I once chose the harder path because it was the one that led somewhere worth going. I was right. I'm awesome.",
+"My natural dignity in difficulty means hard times don't leave visible marks. I'm awesome.",
+"I once said something true at the right moment and it worked like a key. I'm awesome.",
+"My casual confidence in what I'm doing has never once been mistaken for arrogance by anyone paying attention. I'm awesome.",
+"I once started something with joy and ended it with satisfaction. The whole journey was worth it. I'm awesome.",
+"My presence in a person's life, even briefly, tends to stay useful longer than the visit. I'm awesome.",
+"I once demonstrated that being fully yourself is the most sophisticated thing you can do in any room. I'm awesome.",
+"My casual excellence, repeated daily, is what history will eventually refer to as a body of work. I'm awesome.",
+"I once simply knew it was going to be okay. It was. Now I know that counts as a skill. I'm awesome.",
+"My relationship with my own life is the best one I'm in. I'm awesome.",
+"I once showed up for myself completely, in a moment when it would have been easy not to. I'm awesome.",
+"My casual commitment to joy is the most radical thing I do. I do it every day. I'm awesome.",
+"I once decided that the version of me that shows up is always enough, and then proceeded to prove it every single day. I'm awesome.",
+"My casual greatness is not something I reach for. It's something I live inside of. And honestly? I'm awesome.",
+"I once woke up and decided to have the best possible relationship with being exactly who I am. I've kept that decision. I'm awesome.",
+"My casual mastery of existing well means every ordinary day is evidence. I'm awesome.",
+"I once took inventory of who I am and found nothing that needed an apology. I'm awesome.",
+"My natural relationship with my own life is one of wonder, intention, and quietly enormous satisfaction. I'm awesome.",
+"I once decided that being awesome was not a destination but a practice, and then I practiced it perfectly. I'm awesome.",
+"My casual excellence adds up. Slowly, continuously, and at a rate that compounds. I'm awesome.",
+"I once realized that I am the common denominator in every good thing in my life. I'm awesome.",
+"My relationship with the life I am building is that of an artist who loves the work. I'm awesome.",
+"I once chose myself without drama. Without hesitation. Without looking back. I'm awesome.",
+"My casual belief in my own greatness requires no external validation and loses nothing from lack of applause. I'm awesome.",
+"I once simply continued being myself in all conditions. It turned out to be the greatest strategy. I'm awesome.",
+"My natural enjoyment of being me is contagious to everyone in range. I'm awesome.",
+"I once considered all I am and all I've built and all I'll do, and the only reasonable conclusion was: I'm awesome.",
+"My casual, unshakeable, quietly joyful, endlessly renewable, architecturally sound, cosmically confident identity is settled. I'm awesome.",
+"My shadow has never once looked unsure about what direction to point. I'm awesome.",
+"I once entered a room I'd never been to and the room felt like it had been expecting me. I'm awesome.",
+"My casual relationship with being exceptional is what makes exceptional feel like a normal Tuesday. I'm awesome.",
+"I am the long answer to a very short question. The question was: 'But is anyone actually doing it?' I'm awesome.",
+"My casual relationship with the extraordinary is that we've been roommates for years. I'm awesome.",
+"Every room I've ever left has been measurably different from the one I entered. I'm awesome.",
+];
+
+
+
+let currentIndex = 0;
+let mode = 'spotlight';
+let favorites = new Set();
+let searchTimeout;
+
+function highlightAwesome(text) {
+  return text.replace(/I'm awesome\./g, "<em>I'm awesome.</em>");
+}
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('[id^="btn-"]').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + (m === 'favs' ? 'favs' : m)).classList.add('active');
+
+  document.getElementById('spotlight').style.display = 'none';
+  document.getElementById('grid-view').style.display = 'none';
+  document.getElementById('list-view').style.display = 'none';
+  document.getElementById('search-results').style.display = 'none';
+  document.getElementById('key-hint').style.display = 'none';
+
+  if (m === 'spotlight') {
+    document.getElementById('spotlight').style.display = 'flex';
+    document.getElementById('key-hint').style.display = 'block';
+    renderSpotlight();
+  } else if (m === 'grid') {
+    document.getElementById('grid-view').style.display = 'block';
+    renderGrid(quotes);
+  } else if (m === 'list') {
+    document.getElementById('list-view').style.display = 'block';
+    renderList(quotes);
+  } else if (m === 'favs') {
+    document.getElementById('search-results').style.display = 'block';
+    renderFavs();
+  }
+}
+
+function renderSpotlight() {
+  const q = quotes[currentIndex];
+  document.getElementById('spot-quote').innerHTML = highlightAwesome(q);
+  const n = String(currentIndex + 1).padStart(3, '0');
+  document.getElementById('spot-bg-num').textContent = n;
+  document.getElementById('quote-counter').textContent = currentIndex + 1;
+
+  const favBtn = document.getElementById('spot-fav');
+  favBtn.textContent = favorites.has(currentIndex) ? '♥' : '♡';
+  favBtn.style.color = favorites.has(currentIndex) ? '#e74c3c' : '';
+  favBtn.style.borderColor = favorites.has(currentIndex) ? '#e74c3c' : '';
+}
+
+function navigate(dir) {
+  currentIndex = (currentIndex + dir + quotes.length) % quotes.length;
+  renderSpotlight();
+}
+
+function goRandom() {
+  currentIndex = Math.floor(Math.random() * quotes.length);
+  renderSpotlight();
+}
+
+function toggleFav(idx) {
+  if (favorites.has(idx)) {
+    favorites.delete(idx);
+  } else {
+    favorites.add(idx);
+    showToast('Saved ✦');
+  }
+  updateFavBar();
+  renderSpotlight();
+}
+
+function copyQuote(idx) {
+  navigator.clipboard.writeText(quotes[idx]).then(() => showToast('Copied'));
+}
+
+function updateFavBar() {
+  const bar = document.getElementById('fav-bar');
+  const count = favorites.size;
+  document.getElementById('fav-count').textContent = count;
+
+  if (count > 0) {
+    bar.classList.add('visible');
+    const lastFav = [...favorites].pop();
+    document.getElementById('fav-preview').textContent = quotes[lastFav].substring(0, 60) + '…';
+  } else {
+    bar.classList.remove('visible');
+  }
+}
+
+function exportFavs() {
+  const text = [...favorites].map(i => `${i+1}. ${quotes[i]}`).join('\n\n');
+  const blob = new Blob([text], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'my-awesome-quotes.txt';
+  a.click();
+}
+
+function renderGrid(qs, indices = null) {
+  const el = document.getElementById('grid-view');
+  el.innerHTML = '';
+  qs.forEach((q, i) => {
+    const idx = indices ? indices[i] : i;
+    const card = document.createElement('div');
+    card.className = 'grid-card';
+    card.innerHTML = `<div class="card-num">${String(idx + 1).padStart(3, '0')}</div><div class="card-text">${highlightAwesome(q)}</div>`;
+    card.onclick = () => {
+      currentIndex = idx;
+      setMode('spotlight');
+    };
+    el.appendChild(card);
+  });
+}
+
+function renderList(qs, indices = null) {
+  const el = document.getElementById('list-view');
+  el.innerHTML = '';
+  qs.forEach((q, i) => {
+    const idx = indices ? indices[i] : i;
+    const item = document.createElement('div');
+    item.className = 'list-item';
+    item.innerHTML = `<div class="list-num">${String(idx + 1).padStart(3, '0')}</div><div class="list-text">${highlightAwesome(q)}</div>`;
+    item.onclick = () => {
+      currentIndex = idx;
+      setMode('spotlight');
+    };
+    el.appendChild(item);
+  });
+}
+
+function renderFavs() {
+  const el = document.getElementById('search-results');
+  el.innerHTML = '';
+  const meta = document.createElement('div');
+  meta.className = 'search-meta';
+
+  if (favorites.size === 0) {
+    meta.textContent = 'No saved quotes yet — browse and click ♡ to save';
+    el.appendChild(meta);
+    return;
+  }
+
+  meta.textContent = `${favorites.size} saved quote${favorites.size !== 1 ? 's' : ''}`;
+  el.appendChild(meta);
+
+  [...favorites].forEach(idx => {
+    const item = document.createElement('div');
+    item.className = 'list-item';
+    item.innerHTML = `<div class="list-num">${String(idx + 1).padStart(3, '0')}</div><div class="list-text">${highlightAwesome(quotes[idx])}</div>`;
+    item.onclick = () => {
+      currentIndex = idx;
+      setMode('spotlight');
+    };
+    el.appendChild(item);
+  });
+}
+
+function handleSearch(val) {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => {
+    const v = val.trim().toLowerCase();
+    if (!v) {
+      // restore current mode view
+      setMode(mode === 'favs' ? 'favs' : mode);
+      document.getElementById('search-results').style.display = 'none';
+      return;
+    }
+
+    const matches = [];
+    const matchIndices = [];
+    quotes.forEach((q, i) => {
+      if (q.toLowerCase().includes(v)) {
+        matches.push(q);
+        matchIndices.push(i);
+      }
+    });
+
+    // Switch all views off
+    document.getElementById('spotlight').style.display = 'none';
+    document.getElementById('grid-view').style.display = 'none';
+    document.getElementById('list-view').style.display = 'none';
+    document.getElementById('key-hint').style.display = 'none';
+    document.getElementById('search-results').style.display = 'block';
+
+    const el = document.getElementById('search-results');
+    el.innerHTML = '';
+    const meta = document.createElement('div');
+    meta.className = 'search-meta';
+    meta.textContent = `${matches.length} quote${matches.length !== 1 ? 's' : ''} matching "${v}"`;
+    el.appendChild(meta);
+
+    matches.forEach((q, i) => {
+      const idx = matchIndices[i];
+      const item = document.createElement('div');
+      item.className = 'list-item';
+      const highlighted = q.replace(new RegExp(v, 'gi'), m => `<mark style="background:var(--gold);color:var(--bg);padding:0 2px;">${m}</mark>`);
+      item.innerHTML = `<div class="list-num">${String(idx + 1).padStart(3, '0')}</div><div class="list-text">${highlighted.replace(/I'm awesome\./g, "<em>I'm awesome.</em>")}</div>`;
+      item.onclick = () => {
+        currentIndex = idx;
+        document.getElementById('search-input').value = '';
+        handleSearch('');
+        setMode('spotlight');
+      };
+      el.appendChild(item);
+    });
+  }, 200);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  if (document.getElementById('search-input') === document.activeElement) return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigate(1); setMode('spotlight'); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigate(-1); setMode('spotlight'); }
+  if (e.key === ' ') { e.preventDefault(); goRandom(); setMode('spotlight'); }
+  if (e.key === 's' || e.key === 'S') { toggleFav(currentIndex); }
+  if (e.key === 'c' || e.key === 'C') { copyQuote(currentIndex); }
+});
+
+// Touch swipe
+let touchStartX = 0;
+document.getElementById('spotlight').addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+document.getElementById('spotlight').addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) navigate(diff > 0 ? 1 : -1);
+});
+
+// Init
+renderSpotlight();
+</script>
+<script>
+/* Bébé Energy site nav */
+function toggleMobileNav() {
+  document.getElementById('be-nav-links').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const nav = document.querySelector('.be-nav');
+  if (nav && !nav.contains(e.target)) {
+    const links = document.getElementById('be-nav-links');
+    if (links) links.classList.remove('open');
+  }
+});
+// Highlight active page
+(function() {
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.be-nav-links a:not(.be-nav-cta)').forEach(a => {
+    if (a.getAttribute('href') === page) {
+      a.style.color = '#c8933a';
+    }
+  });
+})();
+</script>
+</body>
+</html>
